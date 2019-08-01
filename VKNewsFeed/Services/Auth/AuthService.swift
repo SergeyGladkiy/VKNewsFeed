@@ -9,16 +9,6 @@
 import Foundation
 import VK_ios_sdk
 
-protocol AuthServiceDelegate: class {
-    func authServiceShouldShow(_ viewController: UIViewController)
-    func authServiceSignIn()
-    func authServiceDidSignInFail()
-}
-
-protocol AuthServiceProtocol {
-    var token: String? { get }
-}
-
 final class AuthService: NSObject {
     
     private let appId = "7043973"
@@ -37,13 +27,12 @@ final class AuthService: NSObject {
     
     func wakeUpSeccion() {
         let scope = ["wall", "friends"]
-        print("сюда дошли")
+        
         //необходимо проверить, доступна ли предыдущая сессия
         VKSdk.wakeUpSession(scope) { [delegate] (state, error) in
             if state == VKAuthorizationState.authorized {
                 print("VKAuthorizationState.authorized")
                 delegate?.authServiceSignIn()
-                print("!!! \(delegate)")
             } else if state == VKAuthorizationState.initialized {
                 print("VKAuthorizationState.initialized")
                 VKSdk.authorize(scope)

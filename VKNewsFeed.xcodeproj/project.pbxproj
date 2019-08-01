@@ -37,7 +37,7 @@
 		82B4A25822D39DAF00D9EF4A /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A25722D39DAF00D9EF4A /* FeedModel.swift */; };
 		82B4A25A22D39DD700D9EF4A /* FeedViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A25922D39DD700D9EF4A /* FeedViewModelProtocol.swift */; };
 		82B4A26122D3B7C300D9EF4A /* NewsFeedModelItems.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A25F22D3B7C300D9EF4A /* NewsFeedModelItems.xcdatamodeld */; };
-		82B4A26322D3BBED00D9EF4A /* PersistantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A26222D3BBED00D9EF4A /* PersistantService.swift */; };
+		82B4A26322D3BBED00D9EF4A /* PersistentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A26222D3BBED00D9EF4A /* PersistentService.swift */; };
 		82B4A26A22D4E5E100D9EF4A /* NewsfeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B4A26922D4E5E100D9EF4A /* NewsfeedCell.xib */; };
 		82B4A26C22D4E66E00D9EF4A /* NewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A26B22D4E66E00D9EF4A /* NewsfeedCell.swift */; };
 		82C42EB222E848B60076E15F /* NewsfeedFooterCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EB122E848B60076E15F /* NewsfeedFooterCellModel.swift */; };
@@ -48,6 +48,15 @@
 		82C42EC422E860B10076E15F /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EC322E860B10076E15F /* FooterView.swift */; };
 		82C42ECA22EFA00A0076E15F /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EC922EFA00A0076E15F /* RepeatingTimer.swift */; };
 		82C42ECD22F2EADE0076E15F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 82C42ECC22F2EADE0076E15F /* .gitignore */; };
+		82C42ED022F308110076E15F /* DependenceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42ECF22F308110076E15F /* DependenceProvider.swift */; };
+		82C42ED522F308AD0076E15F /* NetworkingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42ED422F308AD0076E15F /* NetworkingAssembly.swift */; };
+		82C42ED722F309010076E15F /* PersistentServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42ED622F309010076E15F /* PersistentServiceAssembly.swift */; };
+		82C42ED922F3098C0076E15F /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42ED822F3098C0076E15F /* AuthServiceProtocol.swift */; };
+		82C42EDB22F309970076E15F /* AuthServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EDA22F309970076E15F /* AuthServiceDelegate.swift */; };
+		82C42EDD22F30A0C0076E15F /* AuthServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EDC22F30A0B0076E15F /* AuthServiceAssembly.swift */; };
+		82C42EDF22F30EC10076E15F /* AppCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EDE22F30EC10076E15F /* AppCoordinatorAssembly.swift */; };
+		82C42EE122F30ED00076E15F /* NewsfeedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EE022F30ED00076E15F /* NewsfeedAssembly.swift */; };
+		82C42EE422F3134B0076E15F /* PersistentServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EE322F3134B0076E15F /* PersistentServiceProtocol.swift */; };
 		82CC1BDA22DE263D009FF3A6 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC1BD922DE263D009FF3A6 /* ApplicationCoordinator.swift */; };
 		82CC1BDD22DE266B009FF3A6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC1BDC22DE266B009FF3A6 /* Coordinator.swift */; };
 		82CC1BDF22DE26B8009FF3A6 /* CoordinatorAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC1BDE22DE26B8009FF3A6 /* CoordinatorAuth.swift */; };
@@ -105,7 +114,7 @@
 		82B4A25722D39DAF00D9EF4A /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		82B4A25922D39DD700D9EF4A /* FeedViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelProtocol.swift; sourceTree = "<group>"; };
 		82B4A26022D3B7C300D9EF4A /* NewsFeedModelItems.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsFeedModelItems.xcdatamodel; sourceTree = "<group>"; };
-		82B4A26222D3BBED00D9EF4A /* PersistantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistantService.swift; sourceTree = "<group>"; };
+		82B4A26222D3BBED00D9EF4A /* PersistentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentService.swift; sourceTree = "<group>"; };
 		82B4A26922D4E5E100D9EF4A /* NewsfeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsfeedCell.xib; sourceTree = "<group>"; };
 		82B4A26B22D4E66E00D9EF4A /* NewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedCell.swift; sourceTree = "<group>"; };
 		82C42EB122E848B60076E15F /* NewsfeedFooterCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedFooterCellModel.swift; sourceTree = "<group>"; };
@@ -116,6 +125,15 @@
 		82C42EC322E860B10076E15F /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		82C42EC922EFA00A0076E15F /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		82C42ECC22F2EADE0076E15F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		82C42ECF22F308110076E15F /* DependenceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenceProvider.swift; sourceTree = "<group>"; };
+		82C42ED422F308AD0076E15F /* NetworkingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAssembly.swift; sourceTree = "<group>"; };
+		82C42ED622F309010076E15F /* PersistentServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentServiceAssembly.swift; sourceTree = "<group>"; };
+		82C42ED822F3098C0076E15F /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
+		82C42EDA22F309970076E15F /* AuthServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceDelegate.swift; sourceTree = "<group>"; };
+		82C42EDC22F30A0B0076E15F /* AuthServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceAssembly.swift; sourceTree = "<group>"; };
+		82C42EDE22F30EC10076E15F /* AppCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorAssembly.swift; sourceTree = "<group>"; };
+		82C42EE022F30ED00076E15F /* NewsfeedAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedAssembly.swift; sourceTree = "<group>"; };
+		82C42EE322F3134B0076E15F /* PersistentServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentServiceProtocol.swift; sourceTree = "<group>"; };
 		82CC1BD922DE263D009FF3A6 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		82CC1BDC22DE266B009FF3A6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		82CC1BDE22DE26B8009FF3A6 /* CoordinatorAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorAuth.swift; sourceTree = "<group>"; };
@@ -186,6 +204,7 @@
 		828E885522E2155D00FA3D9E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				82C42EC922EFA00A0076E15F /* RepeatingTimer.swift */,
 				828E885822E33DC200FA3D9E /* ImageDownloadManager.swift */,
 				82C42EC322E860B10076E15F /* FooterView.swift */,
 			);
@@ -257,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				82D22D9022CE3054002DC597 /* AuthService.swift */,
+				82C42ED822F3098C0076E15F /* AuthServiceProtocol.swift */,
+				82C42EDA22F309970076E15F /* AuthServiceDelegate.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -286,20 +307,20 @@
 			children = (
 				828E885E22E7163800FA3D9E /* CellModel */,
 				82B4A25522D39D7100D9EF4A /* FeedViewModel.swift */,
-				82C42EC922EFA00A0076E15F /* RepeatingTimer.swift */,
 				82B4A25922D39DD700D9EF4A /* FeedViewModelProtocol.swift */,
 				82020BC522D75C3600A2C6EA /* Mapper */,
 			);
 			path = NewsFeedViewModel;
 			sourceTree = "<group>";
 		};
-		82B4A25B22D3B05A00D9EF4A /* PersistantService */ = {
+		82B4A25B22D3B05A00D9EF4A /* PersistentService */ = {
 			isa = PBXGroup;
 			children = (
+				82C42EE222F3132B0076E15F /* Interface */,
 				82B4A25F22D3B7C300D9EF4A /* NewsFeedModelItems.xcdatamodeld */,
-				82B4A26222D3BBED00D9EF4A /* PersistantService.swift */,
+				82B4A26222D3BBED00D9EF4A /* PersistentService.swift */,
 			);
-			path = PersistantService;
+			path = PersistentService;
 			sourceTree = "<group>";
 		};
 		82B4A26422D4D05900D9EF4A /* NewsFeedCellALL */ = {
@@ -366,6 +387,51 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		82C42ECE22F307CA0076E15F /* Di */ = {
+			isa = PBXGroup;
+			children = (
+				82C42ECF22F308110076E15F /* DependenceProvider.swift */,
+				82C42ED122F308240076E15F /* Assemblies */,
+			);
+			path = Di;
+			sourceTree = "<group>";
+		};
+		82C42ED122F308240076E15F /* Assemblies */ = {
+			isa = PBXGroup;
+			children = (
+				82C42ED222F308380076E15F /* Services */,
+				82C42ED322F308450076E15F /* Presentations */,
+			);
+			path = Assemblies;
+			sourceTree = "<group>";
+		};
+		82C42ED222F308380076E15F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				82C42ED422F308AD0076E15F /* NetworkingAssembly.swift */,
+				82C42ED622F309010076E15F /* PersistentServiceAssembly.swift */,
+				82C42EDC22F30A0B0076E15F /* AuthServiceAssembly.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		82C42ED322F308450076E15F /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				82C42EDE22F30EC10076E15F /* AppCoordinatorAssembly.swift */,
+				82C42EE022F30ED00076E15F /* NewsfeedAssembly.swift */,
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		82C42EE222F3132B0076E15F /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				82C42EE322F3134B0076E15F /* PersistentServiceProtocol.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
 		82CC1BD822DE25FF009FF3A6 /* CoordinatorVK */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +475,7 @@
 			children = (
 				82D22D7E22CE155C002DC597 /* AppDelegate.swift */,
 				82020BCC22D7747C00A2C6EA /* Observable.swift */,
+				82C42ECE22F307CA0076E15F /* Di */,
 				82CC1BD822DE25FF009FF3A6 /* CoordinatorVK */,
 				828E886122E7185F00FA3D9E /* Extension */,
 				828E885522E2155D00FA3D9E /* Helpers */,
@@ -426,7 +493,7 @@
 		82D22D9222CE3064002DC597 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				82B4A25B22D3B05A00D9EF4A /* PersistantService */,
+				82B4A25B22D3B05A00D9EF4A /* PersistentService */,
 				82B4A25122D36F0C00D9EF4A /* Auth */,
 				82B4A24B22D2597A00D9EF4A /* Nerwork */,
 				82B4A24822D2576300D9EF4A /* Models */,
@@ -616,7 +683,10 @@
 				82D22DA722CE378E002DC597 /* IFieldDising.swift in Sources */,
 				82CC1BE522DF9E46009FF3A6 /* ProfileRepresentable.swift in Sources */,
 				828E884722E1E92B00FA3D9E /* HeaderNewsfeedCell.swift in Sources */,
+				82C42EDF22F30EC10076E15F /* AppCoordinatorAssembly.swift in Sources */,
 				82D22DA422CE378E002DC597 /* AdjustingLabel.swift in Sources */,
+				82C42EDB22F309970076E15F /* AuthServiceDelegate.swift in Sources */,
+				82C42ED722F309010076E15F /* PersistentServiceAssembly.swift in Sources */,
 				82C42EC422E860B10076E15F /* FooterView.swift in Sources */,
 				82D22DAC22CE378E002DC597 /* Structs.swift in Sources */,
 				82D22D9122CE3054002DC597 /* AuthService.swift in Sources */,
@@ -633,13 +703,17 @@
 				82CC1BE122DE35F1009FF3A6 /* PrototcolCoordinatorAuth.swift in Sources */,
 				82B4A26122D3B7C300D9EF4A /* NewsFeedModelItems.xcdatamodeld in Sources */,
 				828E886322E7188000FA3D9E /* CellReusable.swift in Sources */,
+				82C42ED922F3098C0076E15F /* AuthServiceProtocol.swift in Sources */,
 				82B4A25022D2847300D9EF4A /* NetworkDataFetcher.swift in Sources */,
 				82C42EB222E848B60076E15F /* NewsfeedFooterCellModel.swift in Sources */,
+				82C42EDD22F30A0C0076E15F /* AuthServiceAssembly.swift in Sources */,
 				82B4A25A22D39DD700D9EF4A /* FeedViewModelProtocol.swift in Sources */,
 				82D22D9422CE33DC002DC597 /* AuthViewController.swift in Sources */,
 				82D22DAA22CE378E002DC597 /* RoundedButton.swift in Sources */,
 				82CC1BDD22DE266B009FF3A6 /* Coordinator.swift in Sources */,
+				82C42EE422F3134B0076E15F /* PersistentServiceProtocol.swift in Sources */,
 				828E885722E2157C00FA3D9E /* WebImageView.swift in Sources */,
+				82C42EE122F30ED00076E15F /* NewsfeedAssembly.swift in Sources */,
 				828E886022E7172800FA3D9E /* ItemTableCellModel.swift in Sources */,
 				82020BC722D75C5400A2C6EA /* MapperItemsTableCellModel.swift in Sources */,
 				82B4A25622D39D7100D9EF4A /* FeedViewModel.swift in Sources */,
@@ -647,7 +721,7 @@
 				82C42ECA22EFA00A0076E15F /* RepeatingTimer.swift in Sources */,
 				82B4A24A22D2577D00D9EF4A /* FeedResponse.swift in Sources */,
 				828E885922E33DC200FA3D9E /* ImageDownloadManager.swift in Sources */,
-				82B4A26322D3BBED00D9EF4A /* PersistantService.swift in Sources */,
+				82B4A26322D3BBED00D9EF4A /* PersistentService.swift in Sources */,
 				828E885122E1F14800FA3D9E /* FooterNewsfeedCell.swift in Sources */,
 				828E886722E71B3300FA3D9E /* NewsfeedHeaderCellModel.swift in Sources */,
 				82B4A24522D242BE00D9EF4A /* NetworkService.swift in Sources */,
@@ -655,8 +729,10 @@
 				82D22DA322CE378E002DC597 /* Label.swift in Sources */,
 				828E885D22E7071700FA3D9E /* Attachment.swift in Sources */,
 				82B4A24E22D259C300D9EF4A /* Network.swift in Sources */,
+				82C42ED022F308110076E15F /* DependenceProvider.swift in Sources */,
 				828E886522E7193900FA3D9E /* NewsfeedTextCellModel.swift in Sources */,
 				828E886922E71E7A00FA3D9E /* NewsfeedPhotosCellModel.swift in Sources */,
+				82C42ED522F308AD0076E15F /* NetworkingAssembly.swift in Sources */,
 				82020BCD22D7747C00A2C6EA /* Observable.swift in Sources */,
 				82D22D7F22CE155C002DC597 /* AppDelegate.swift in Sources */,
 				82020BCB22D75DC200A2C6EA /* ItemNewsfeed.swift in Sources */,

@@ -12,11 +12,11 @@ class FeedModel {
     
     var models = Observable<FeedResponse>(observable: FeedResponse())
     
-    private var persistantService: PersistantService
+    private var persistantService: PersistentServiceProtocol
     private var fetcher: DataFetcher
     private var newPostsFrom: String?
     
-    init(fetcher: DataFetcher, persistantService: PersistantService) {
+    init(fetcher: DataFetcher, persistantService: PersistentServiceProtocol) {
         self.fetcher = fetcher
         self.persistantService = persistantService
         

@@ -10,16 +10,15 @@ import Foundation
 import UIKit
 
 class CoordinatorAuth {
-    static let sharedInstance = CoordinatorAuth()
+    //static let sharedInstance = CoordinatorAuth()
     //var authService = AuthService()
 }
 
 extension CoordinatorAuth: ProtocolCoordinatorAuth {
     func start() -> UIViewController {
-        //self.authService = AuthService()
-//        authService.delegate = self
-//        print(authService.delegate)
-        let authVC = AuthViewController()
+        var authService: AuthServiceProtocol = DependenceProvider.resolve()
+        authService.delegate = self
+        let authVC = AuthViewController(authService: authService)
         return authVC
     }
 }
@@ -31,12 +30,7 @@ extension CoordinatorAuth: AuthServiceDelegate {
     }
     
     func authServiceSignIn() {
-        let network = NetworkService()
-        let fetcherNetwork = NetworkDataFetcher(networking: network)
-        let persistant = PersistantService()
-        let mapper = MapperItemsTableCellModel()
-        let feedModel = FeedModel(fetcher: fetcherNetwork, persistantService: persistant)
-        let feedViewModel = FeedViewModel(model: feedModel, state: .init(observable: .initial), mapper: mapper)
+        let feedViewModel: FeedViewModelProtocol = DependenceProvider.resolve()
         let feedViewController = FeedViewController(viewModel: feedViewModel)
         feedViewModel.twoWayDataBinding()
         AppDelegate.shared().window?.rootViewController = feedViewController

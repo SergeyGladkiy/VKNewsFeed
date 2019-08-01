@@ -9,15 +9,8 @@
 import Foundation
 import CoreData
 
-class PersistantService {
-//    private let persistantContainer: NSPersistentContainer
-//
-//    init() {
-//        persistantContainer = NSPersistentContainer(name: "CoreDataModel")
-//        persistantContainer.loadPersistentStores { desc, error in
-//            print(error)
-//        }
-//    }
+class PersistentService {
+
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "NewsFeedModelItems")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -43,7 +36,7 @@ class PersistantService {
     }
 }
 
-extension PersistantService {
+extension PersistentService: PersistentServiceProtocol {
     func saveTask(items: [FeedItem]) {
         let context = persistentContainer.viewContext
         

@@ -7,5 +7,6 @@ target 'VKNewsFeed' do
   # Pods for VKNewsFeed
 
 pod "VK-ios-sdk" 
+pod 'Swinject'
 
 end

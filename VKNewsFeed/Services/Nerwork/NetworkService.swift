@@ -12,8 +12,8 @@ final class NetworkService {
     
     private let authService: AuthServiceProtocol
     
-    init() {
-        self.authService = AppDelegate.shared().authService
+    init(authService: AuthServiceProtocol) {
+        self.authService = authService
     }
     
     private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {

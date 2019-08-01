@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //AuthServiceDelegate
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.authService = AuthService()
-        authService.delegate = CoordinatorAuth.sharedInstance
-        let appCoordinator = ApplicationCoordinator()
+//        self.authService = AuthService()
+//        authService.delegate = CoordinatorAuth.sharedInstance
+        let appCoordinator: Coordinator = DependenceProvider.resolve()
         window = appCoordinator.prepareWindow()
       
         return true

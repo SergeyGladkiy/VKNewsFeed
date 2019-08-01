@@ -12,6 +12,7 @@ protocol FeedViewModelProtocol {
     var state: Observable<FeedViewModelState> { get }
     var readyNewsFeedItems: Observable<[ItemTableCellModel]> { get }
     
+    func twoWayDataBinding()
     func getNewData()
     func fetchNewsFeed()
     func cellViewModel(forIndexPath indexPath: IndexPath) -> ItemTableCellModel?

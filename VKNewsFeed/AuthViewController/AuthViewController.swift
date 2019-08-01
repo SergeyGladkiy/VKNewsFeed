@@ -10,14 +10,15 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
-    private var authService: AuthService!
+    private var authService: AuthServiceProtocol!
     
     private weak var enterVK: UIButton!
     
     private var arrayConstraints = [NSLayoutConstraint]()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init(authService: AuthServiceProtocol) {
+        super.init(nibName: nil, bundle: nil)
+        self.authService = authService
         view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         layout()
         
@@ -32,7 +33,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //authService = AuthService()
-        authService = AppDelegate.shared().authService
+        //authService = AppDelegate.shared().authService
         //authService = CoordinatorAuth.sharedInstance.authService
         print(authService)
     }

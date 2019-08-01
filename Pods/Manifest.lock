@@ -1,16 +1,20 @@
 PODS:
+  - Swinject (2.6.1)
   - VK-ios-sdk (1.4.6)
 
 DEPENDENCIES:
+  - Swinject
   - VK-ios-sdk
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Swinject
     - VK-ios-sdk
 
 SPEC CHECKSUMS:
+  Swinject: b624462f47b635a64f89a60a247baa5fccec14e1
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
 
-PODFILE CHECKSUM: 61243927debd93a6b6043c50535a176806cb5e98
+PODFILE CHECKSUM: c65dc057c0b3ca5b302ebd0ae44b82f26534e94f
 
 COCOAPODS: 1.7.2

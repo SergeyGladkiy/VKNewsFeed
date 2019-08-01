@@ -54,14 +54,14 @@ class FeedViewController: UIViewController {
             }
             switch vmState {
             case .initial: return
-            case .readyShowItems(let array):
-                self.tableView.beginUpdates()
-                //self.tableView.reloadRows(at: [IndexPath.init(row: self.viewModel.readyNewsFeedItems.observable.count - 1, section: 0)], with: .bottom)
-                self.tableView.insertRows(at: array, with: .bottom)
-                self.refreshControl.endRefreshing()
-                self.tableView.endUpdates()
-//                self.tableView.reloadData()
+            case .readyShowItems://(let array):
+//                self.tableView.beginUpdates()
+//                //self.tableView.reloadRows(at: [IndexPath.init(row: self.viewModel.readyNewsFeedItems.observable.count - 1, section: 0)], with: .bottom)
+//                self.tableView.insertRows(at: array, with: .bottom)
 //                self.refreshControl.endRefreshing()
+//                self.tableView.endUpdates()
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             case .newItemsReceived:
                 return
             }
