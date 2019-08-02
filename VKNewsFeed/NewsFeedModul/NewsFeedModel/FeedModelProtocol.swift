@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FeedModelProtocol {
-    var models: Observable<FeedResponse> { get }
+    var models: Observable<NewsFeedData> { get }
     
     func getNewsFeed()
     func getNewPosts()

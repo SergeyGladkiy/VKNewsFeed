@@ -10,31 +10,43 @@ import Foundation
 
 final class MapperItemsTableCellModel {
    
-    private func buildNewsfeedHeaderCellModel(item: FeedItem, profile: ProfileRepresentable) -> ItemTableCellModel {
+    private func buildNewsfeedHeaderCellModel(item: NewsFeedElement, profile: ProfileRepresentable) -> ItemTableCellModel {
         let date = getPostDate(date: item.date)
         return NewsfeedHeaderCellModel(userName: profile.name,
                                        date: date,
                                        imageURL: profile.photo)
     }
     
-    private func buildNewsfeedTextCellModel(item: FeedItem) -> ItemTableCellModel {
+    private func buildNewsfeedTextCellModel(item: NewsFeedElement) -> ItemTableCellModel {
         return NewsfeedTextCellModel(postText: item.text)
     }
     
     private func buildNewsfeedPhotoCellModel(attachments: [PhotoAttachment]) -> ItemTableCellModel {
         let maxHeight = attachments.map { $0.height }.max()
+
         let item = attachments.first(where: {
             $0.height == maxHeight
         })
-        let ration = maxHeight! / item!.width
-        return NewsfeedPhotoCellModel(photo: attachments, ratio: ration)
+        var ratio: Int = 0
+        if item!.width < maxHeight! {
+            ratio = maxHeight! / item!.width
+        } else {
+            ratio = item!.width / maxHeight!
+        }
+        
+        //        print("maxHeight \(maxHeight)")
+        //        print("height \(attachments.map { $0.height })")
+        //        print("width maxHeight \(item?.width)")
+        //        print("width \(attachments.map { $0.width })")
+        
+        return NewsfeedPhotoCellModel(photo: attachments, ratio: ratio)
     }
     
-    private func buildNewsfeedFooterCellModel(item: FeedItem) -> ItemTableCellModel {
-        let likes = item.likes?.count ?? 0
-        let comments = item.comments?.count ?? 0
-        let reposts = item.reposts?.count ?? 0
-        let viewers = item.views?.count ?? 0
+    private func buildNewsfeedFooterCellModel(item: NewsFeedElement) -> ItemTableCellModel {
+        let likes = item.likes.observable ?? 0
+        let comments = item.comments.observable ?? 0
+        let reposts = item.reposts.observable ?? 0
+        let viewers = item.views.observable ?? 0
         return NewsfeedFooterCellModel(likeCount: likes,
                                         commentCount: comments,
                                         shareCount: reposts,
@@ -58,7 +70,7 @@ final class MapperItemsTableCellModel {
         return dateFormatter.string(from: date)
     }
     
-    private func getAttachments(item: FeedItem) -> [PhotoAttachment] {
+    private func getAttachments(item: NewsFeedElement) -> [PhotoAttachment] {
         guard let attachments = item.attachments else {
             return []
         }
@@ -76,7 +88,7 @@ final class MapperItemsTableCellModel {
 extension MapperItemsTableCellModel: MapperProtocolItemsTableCellModel {
     
     
-    func buildNewsFeedItems(items: [FeedItem], profiles: [Profile], groups: [Group]) -> [ItemTableCellModel] {
+    func buildNewsFeedItems(items: [NewsFeedElement], profiles: [Profile], groups: [Group]) -> [ItemTableCellModel] {
         
         var cellModels = [ItemTableCellModel]()
         for item in items {

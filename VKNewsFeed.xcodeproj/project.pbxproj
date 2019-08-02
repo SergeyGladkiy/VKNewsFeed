@@ -57,6 +57,12 @@
 		82C42EDF22F30EC10076E15F /* AppCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EDE22F30EC10076E15F /* AppCoordinatorAssembly.swift */; };
 		82C42EE122F30ED00076E15F /* NewsfeedAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EE022F30ED00076E15F /* NewsfeedAssembly.swift */; };
 		82C42EE422F3134B0076E15F /* PersistentServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EE322F3134B0076E15F /* PersistentServiceProtocol.swift */; };
+		82C42EE622F34CDB0076E15F /* NewsFeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EE522F34CDB0076E15F /* NewsFeedData.swift */; };
+		82C42EE822F354820076E15F /* NewsFeedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EE722F354820076E15F /* NewsFeedElement.swift */; };
+		82C42EEA22F354A80076E15F /* NewsFeedProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EE922F354A80076E15F /* NewsFeedProfileData.swift */; };
+		82C42EEC22F355360076E15F /* NewsFeedAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EEB22F355360076E15F /* NewsFeedAttachment.swift */; };
+		82C42EEF22F355970076E15F /* MapperNewsFeedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EEE22F355970076E15F /* MapperNewsFeedElement.swift */; };
+		82C42EF122F355B20076E15F /* MapperProtocolNewsFeedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C42EF022F355B20076E15F /* MapperProtocolNewsFeedElement.swift */; };
 		82CC1BDA22DE263D009FF3A6 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC1BD922DE263D009FF3A6 /* ApplicationCoordinator.swift */; };
 		82CC1BDD22DE266B009FF3A6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC1BDC22DE266B009FF3A6 /* Coordinator.swift */; };
 		82CC1BDF22DE26B8009FF3A6 /* CoordinatorAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC1BDE22DE26B8009FF3A6 /* CoordinatorAuth.swift */; };
@@ -134,6 +140,12 @@
 		82C42EDE22F30EC10076E15F /* AppCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		82C42EE022F30ED00076E15F /* NewsfeedAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedAssembly.swift; sourceTree = "<group>"; };
 		82C42EE322F3134B0076E15F /* PersistentServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentServiceProtocol.swift; sourceTree = "<group>"; };
+		82C42EE522F34CDB0076E15F /* NewsFeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedData.swift; sourceTree = "<group>"; };
+		82C42EE722F354820076E15F /* NewsFeedElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedElement.swift; sourceTree = "<group>"; };
+		82C42EE922F354A80076E15F /* NewsFeedProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedProfileData.swift; sourceTree = "<group>"; };
+		82C42EEB22F355360076E15F /* NewsFeedAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedAttachment.swift; sourceTree = "<group>"; };
+		82C42EEE22F355970076E15F /* MapperNewsFeedElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperNewsFeedElement.swift; sourceTree = "<group>"; };
+		82C42EF022F355B20076E15F /* MapperProtocolNewsFeedElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperProtocolNewsFeedElement.swift; sourceTree = "<group>"; };
 		82CC1BD922DE263D009FF3A6 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		82CC1BDC22DE266B009FF3A6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		82CC1BDE22DE26B8009FF3A6 /* CoordinatorAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorAuth.swift; sourceTree = "<group>"; };
@@ -181,13 +193,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		82020BC522D75C3600A2C6EA /* Mapper */ = {
+		82020BC522D75C3600A2C6EA /* MapperViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				82020BC622D75C5400A2C6EA /* MapperItemsTableCellModel.swift */,
 				82020BC822D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift */,
 			);
-			path = Mapper;
+			path = MapperViewModel;
 			sourceTree = "<group>";
 		};
 		828E884522E1E88300FA3D9E /* Cell */ = {
@@ -211,7 +223,7 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		828E885E22E7163800FA3D9E /* CellModel */ = {
+		828E885E22E7163800FA3D9E /* CellViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				828E885F22E7172800FA3D9E /* ItemTableCellModel.swift */,
@@ -220,7 +232,7 @@
 				828E886822E71E7A00FA3D9E /* NewsfeedPhotosCellModel.swift */,
 				82C42EB122E848B60076E15F /* NewsfeedFooterCellModel.swift */,
 			);
-			path = CellModel;
+			path = CellViewModel;
 			sourceTree = "<group>";
 		};
 		828E886122E7185F00FA3D9E /* Extension */ = {
@@ -298,6 +310,7 @@
 				82C42ECB22F19E1A0076E15F /* Entities */,
 				82B4A25722D39DAF00D9EF4A /* FeedModel.swift */,
 				82700E1122DFA89400D55E46 /* FeedModelProtocol.swift */,
+				82C42EED22F355580076E15F /* MapperFeedModel */,
 			);
 			path = NewsFeedModel;
 			sourceTree = "<group>";
@@ -305,10 +318,10 @@
 		82B4A25422D39D5100D9EF4A /* NewsFeedViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				828E885E22E7163800FA3D9E /* CellModel */,
+				828E885E22E7163800FA3D9E /* CellViewModel */,
 				82B4A25522D39D7100D9EF4A /* FeedViewModel.swift */,
 				82B4A25922D39DD700D9EF4A /* FeedViewModelProtocol.swift */,
-				82020BC522D75C3600A2C6EA /* Mapper */,
+				82020BC522D75C3600A2C6EA /* MapperViewModel */,
 			);
 			path = NewsFeedViewModel;
 			sourceTree = "<group>";
@@ -383,6 +396,10 @@
 		82C42ECB22F19E1A0076E15F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				82C42EE522F34CDB0076E15F /* NewsFeedData.swift */,
+				82C42EE722F354820076E15F /* NewsFeedElement.swift */,
+				82C42EE922F354A80076E15F /* NewsFeedProfileData.swift */,
+				82C42EEB22F355360076E15F /* NewsFeedAttachment.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -430,6 +447,15 @@
 				82C42EE322F3134B0076E15F /* PersistentServiceProtocol.swift */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		82C42EED22F355580076E15F /* MapperFeedModel */ = {
+			isa = PBXGroup;
+			children = (
+				82C42EEE22F355970076E15F /* MapperNewsFeedElement.swift */,
+				82C42EF022F355B20076E15F /* MapperProtocolNewsFeedElement.swift */,
+			);
+			path = MapperFeedModel;
 			sourceTree = "<group>";
 		};
 		82CC1BD822DE25FF009FF3A6 /* CoordinatorVK */ = {
@@ -690,6 +716,7 @@
 				82C42EC422E860B10076E15F /* FooterView.swift in Sources */,
 				82D22DAC22CE378E002DC597 /* Structs.swift in Sources */,
 				82D22D9122CE3054002DC597 /* AuthService.swift in Sources */,
+				82C42EE822F354820076E15F /* NewsFeedElement.swift in Sources */,
 				82C42EBE22E8508F0076E15F /* CollectionViewCellNewsfeed.swift in Sources */,
 				82B4A25822D39DAF00D9EF4A /* FeedModel.swift in Sources */,
 				828E884D22E1EFBA00FA3D9E /* PostTextNewsfeedCell.swift in Sources */,
@@ -716,6 +743,8 @@
 				82C42EE122F30ED00076E15F /* NewsfeedAssembly.swift in Sources */,
 				828E886022E7172800FA3D9E /* ItemTableCellModel.swift in Sources */,
 				82020BC722D75C5400A2C6EA /* MapperItemsTableCellModel.swift in Sources */,
+				82C42EE622F34CDB0076E15F /* NewsFeedData.swift in Sources */,
+				82C42EEC22F355360076E15F /* NewsFeedAttachment.swift in Sources */,
 				82B4A25622D39D7100D9EF4A /* FeedViewModel.swift in Sources */,
 				82D22DAB22CE378E002DC597 /* Button.swift in Sources */,
 				82C42ECA22EFA00A0076E15F /* RepeatingTimer.swift in Sources */,
@@ -727,15 +756,18 @@
 				82B4A24522D242BE00D9EF4A /* NetworkService.swift in Sources */,
 				82D22DA822CE378E002DC597 /* Field.swift in Sources */,
 				82D22DA322CE378E002DC597 /* Label.swift in Sources */,
+				82C42EEA22F354A80076E15F /* NewsFeedProfileData.swift in Sources */,
 				828E885D22E7071700FA3D9E /* Attachment.swift in Sources */,
 				82B4A24E22D259C300D9EF4A /* Network.swift in Sources */,
 				82C42ED022F308110076E15F /* DependenceProvider.swift in Sources */,
 				828E886522E7193900FA3D9E /* NewsfeedTextCellModel.swift in Sources */,
+				82C42EF122F355B20076E15F /* MapperProtocolNewsFeedElement.swift in Sources */,
 				828E886922E71E7A00FA3D9E /* NewsfeedPhotosCellModel.swift in Sources */,
 				82C42ED522F308AD0076E15F /* NetworkingAssembly.swift in Sources */,
 				82020BCD22D7747C00A2C6EA /* Observable.swift in Sources */,
 				82D22D7F22CE155C002DC597 /* AppDelegate.swift in Sources */,
 				82020BCB22D75DC200A2C6EA /* ItemNewsfeed.swift in Sources */,
+				82C42EEF22F355970076E15F /* MapperNewsFeedElement.swift in Sources */,
 				82B4A24722D2441C00D9EF4A /* API.swift in Sources */,
 				82D22DA622CE378E002DC597 /* AdjustingField.swift in Sources */,
 				82CC1BDF22DE26B8009FF3A6 /* CoordinatorAuth.swift in Sources */,

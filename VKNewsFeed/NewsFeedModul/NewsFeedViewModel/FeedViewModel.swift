@@ -27,6 +27,7 @@ class FeedViewModel {
         timer.schedule(deadline: .now() + 0.5)
         timer.setEventHandler(handler: { [weak self] in
             self?.getNewData()
+            self?.fetchNewsFeed()
         })
         return timer
     }()

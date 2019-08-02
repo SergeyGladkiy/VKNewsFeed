@@ -29,7 +29,12 @@ class NewsfeedAssembly: Assembly {
         container.register(FeedModelProtocol.self) { r in
             let persistentService = r.resolve(PersistentServiceProtocol.self)!
             let fetcher = r.resolve(DataFetcher.self)!
-            return FeedModel(fetcher: fetcher, persistantService: persistentService)
+            let mapper = r.resolve(MapperProtocolNewsFeedElement.self)!
+            return FeedModel(fetcher: fetcher, persistantService: persistentService, mapper: mapper)
+        }
+        
+        container.register(MapperProtocolNewsFeedElement.self) { _ in
+            MapperNewsFeedElement()
         }
     }
 }

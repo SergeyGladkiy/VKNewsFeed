@@ -12,6 +12,10 @@ class PhotoNewsfeedCell: UITableViewCell {
     
     private var size: CGSize = .zero
     
+    override var intrinsicContentSize: CGSize {
+        return size
+    }
+    
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var copy = size
         copy.height = self.size.height

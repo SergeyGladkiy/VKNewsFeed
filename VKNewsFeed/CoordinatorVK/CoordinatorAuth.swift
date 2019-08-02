@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class CoordinatorAuth {
-    //static let sharedInstance = CoordinatorAuth()
-    //var authService = AuthService()
+
 }
 
 extension CoordinatorAuth: ProtocolCoordinatorAuth {

@@ -10,27 +10,35 @@ import Foundation
 
 class FeedModel {
     
-    var models = Observable<FeedResponse>(observable: FeedResponse())
+    var models = Observable<NewsFeedData>(observable: NewsFeedData())
     
     private var persistantService: PersistentServiceProtocol
     private var fetcher: DataFetcher
     private var newPostsFrom: String?
+    private var mapper: MapperProtocolNewsFeedElement
     
-    init(fetcher: DataFetcher, persistantService: PersistentServiceProtocol) {
+    init(fetcher: DataFetcher, persistantService: PersistentServiceProtocol, mapper: MapperProtocolNewsFeedElement) {
         self.fetcher = fetcher
         self.persistantService = persistantService
-        
+        self.mapper = mapper
     }
 }
 
 extension FeedModel: FeedModelProtocol {
    
+    func twoWayDataBinding() {
+//        models.observable.items.map { $0.comments.bind { [weak self] comments in
+//            guard let self = self else { return }
+//            }
+//        }
+    }
     
     // MARK: use vk Newsfeed.get without param start_from
     func getNewsFeed() {
         fetcher.getFeed(nextBatchFrom: nil) { [weak self] feedResponse in
             guard let feedResponse = feedResponse else { return }
-            self?.models.observable = feedResponse
+            guard let newsFeedData = self?.mapper.getElements(of: feedResponse) else { return }
+            self?.models.observable = newsFeedData
 
         }
     }
@@ -40,36 +48,35 @@ extension FeedModel: FeedModelProtocol {
         newPostsFrom = models.observable.nextFrom
         fetcher.getFeed(nextBatchFrom: newPostsFrom) { [weak self] feedResponse in
             guard let feedResponse = feedResponse, self?.models.observable.nextFrom != feedResponse.nextFrom else { return }
+             guard let newsFeedData = self?.mapper.getElements(of: feedResponse) else { return }
+            self?.models.observable.items.append(contentsOf: newsFeedData.items)
+            print("my nextFrom \(self?.models.observable.nextFrom) and response nextFrom \(newsFeedData.nextFrom)")
+            self?.models.observable.nextFrom = newsFeedData.nextFrom
             
-            self?.models.observable.items.append(contentsOf: feedResponse.items)
-            print("my nextFrom \(self?.models.observable.nextFrom) and response nextFrom \(feedResponse.nextFrom)")
-            self?.models.observable.nextFrom = feedResponse.nextFrom
             
             
-            
-            var profiles = feedResponse.profiles
+            var profiles = newsFeedData.profiles
             if let oldProfiles = self?.models.observable.profiles {
                 let oldProfilesFiltered = oldProfiles.filter({ oldProfile in
-                    !feedResponse.profiles.contains(where: { $0.id == oldProfile.id })
+                    !newsFeedData.profiles.contains(where: { $0.id == oldProfile.id })
                 })
                 profiles.append(contentsOf: oldProfilesFiltered)
             }
             self?.models.observable.profiles = profiles
             
             
-            var groups = feedResponse.groups
+            var groups = newsFeedData.groups
             if let oldGroups = self?.models.observable.groups {
                 let oldGroupsFiltered = oldGroups.filter({ oldGroup in
-                    !feedResponse.groups.contains(where: { $0.id == oldGroup.id })
+                    !newsFeedData.groups.contains(where: { $0.id == oldGroup.id })
                 })
                 groups.append(contentsOf: oldGroupsFiltered)
-                print(groups)
             }
             self?.models.observable.groups = groups
             
+            /// -----???---- observable on groups and profile
             guard let response = self?.models.observable else { return }
             self?.models.observable = response
-            //completion(response)
         }
     }
     

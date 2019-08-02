@@ -9,7 +9,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    var some = 0
+
     var viewModel: FeedViewModelProtocol!
    
     private var arrayConstraints = [NSLayoutConstraint]()
@@ -56,7 +56,6 @@ class FeedViewController: UIViewController {
             case .initial: return
             case .readyShowItems://(let array):
 //                self.tableView.beginUpdates()
-//                //self.tableView.reloadRows(at: [IndexPath.init(row: self.viewModel.readyNewsFeedItems.observable.count - 1, section: 0)], with: .bottom)
 //                self.tableView.insertRows(at: array, with: .bottom)
 //                self.refreshControl.endRefreshing()
 //                self.tableView.endUpdates()
@@ -83,9 +82,7 @@ class FeedViewController: UIViewController {
     }
     
     @objc private func refreshAction(_ refreshControl: UIRefreshControl) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.viewModel?.fetchNewsFeed()
-        }
+        viewModel?.fetchNewsFeed()
     }
 }
 
@@ -140,10 +137,11 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             let width = UIScreen.main.bounds.width
             let height = width * (CGFloat(ratio!))
             //let height = width * (CGFloat(photos.first!.height) / CGFloat(photos.first!.width))
+//            print("width screen \(width)")
+//            print("height \(height)")
+//            print("fetchable height \(photos.first!.height)")
+//            print("fetchable width \(photos.first!.width)")
             itemCell.config(size: CGSize(width: width, height: height))
-//            let photo = itemCell.viewModel?.attachments.min { arg1, arg2 in arg1.height < arg2.height }
-////            print("Photo with min \(photo?.height)")
-//            itemCell.config(size: CGSize(width: 0, height: photo?.height ?? 0))
             cell = itemCell
         }
         
@@ -153,18 +151,6 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let lastSectionIndex = tableView.numberOfSections - 1
-//        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-//        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
-//            // print("this is the last cell")
-//            let spinner = FooterView()
-//            spinner.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
-//            spinner.showLoader()
-//            self.tableView.tableFooterView = spinner
-//        }
-//    }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height {
