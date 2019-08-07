@@ -31,7 +31,7 @@ extension CoordinatorAuth: AuthServiceDelegate {
     func authServiceSignIn() {
         let feedViewModel: FeedViewModelProtocol = DependenceProvider.resolve()
         let feedViewController = FeedViewController(viewModel: feedViewModel)
-        feedViewModel.twoWayDataBinding()
+        //feedViewModel.twoWayDataBinding()
         AppDelegate.shared().window?.rootViewController = feedViewController
     }
     

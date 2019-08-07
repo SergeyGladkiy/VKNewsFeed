@@ -10,78 +10,67 @@ import Foundation
 
 enum FeedViewModelState {
     case initial
-    case readyShowItems//([IndexPath])
-    case newItemsReceived
+    case readyShowItems(Int, Int)
 }
 
 class FeedViewModel {
     
-    var readyNewsFeedItems = Observable<[ItemTableCellModel]>(observable: [])
+    var readyNewsFeedItems = Observable<[Int: [ItemTableCellModel]]>(observable: [:])
     
     var state: Observable<FeedViewModelState>
     
-    private var arrayIndexPath = [IndexPath]()
+    private var firstIndex = 0
     
-    private lazy var dispatchSourceTimer: DispatchSourceTimer = {
-        let timer = DispatchSource.makeTimerSource()
-        timer.schedule(deadline: .now() + 0.5)
-        timer.setEventHandler(handler: { [weak self] in
-            self?.getNewData()
-            self?.fetchNewsFeed()
-        })
-        return timer
-    }()
+    private var timer: RepeatingTimerProtocol
     
     private let model: FeedModelProtocol
     private let mapper: MapperProtocolItemsTableCellModel
     
-    init(model: FeedModelProtocol, state: Observable<FeedViewModelState>, mapper: MapperProtocolItemsTableCellModel) {
+    init(model: FeedModelProtocol, state: Observable<FeedViewModelState>, mapper: MapperProtocolItemsTableCellModel, timer: RepeatingTimerProtocol) {
+        
         self.model = model
         self.state = state
         self.mapper = mapper
+        self.timer = timer
+        
+        model.models.bind { [weak self] response in
+            guard let self = self else { return }
+            self.readyNewsFeedItems.observable = self.mapper.buildNewsFeedItems(items: response.items, profiles: response.profiles, groups: response.groups)
+            
+            self.state.observable = .readyShowItems(self.firstIndex, self.readyNewsFeedItems.observable.count-1)
+            self.firstIndex = self.readyNewsFeedItems.observable.count
+            self.timer.suspend()
+        }
     } // add state errors
 }
 
 extension FeedViewModel: FeedViewModelProtocol {
     
-    func twoWayDataBinding() {
-        model.models.bind { [weak self] response in
-            guard let self = self else { return }
-            self.readyNewsFeedItems.observable = self.mapper.buildNewsFeedItems(items: response.items, profiles: response.profiles, groups: response.groups)
-            
-            //print("/? \(self.readyNewsFeedItems.observable.)")
-//            switch response.items.count {
-//            case 50:
-//                let section = 0
-//                let indexes = response.items.enumerated()
-//                self.arrayIndexPath = indexes.map { IndexPath(row: $0.offset, section: section)}
-//            case 100:
-//                let section = 1
-//                let indexes = response.items.enumerated()
-//                self.arrayIndexPath = indexes.map { IndexPath(row: $0.offset, section: section)}
-//            default:
-//                print(self.readyNewsFeedItems.observable.count)
-//            }
-            self.state.observable = .readyShowItems//(self.arrayIndexPath)
-            
-            
-        } // add errors
+    func numberOfSection() -> Int {
+        return readyNewsFeedItems.observable.count
     }
     
-    func numberOfRows() -> Int {
-        return readyNewsFeedItems.observable.count 
+    func numberOfRows(section: Int) -> Int {
+        guard let numberOfRows = readyNewsFeedItems.observable[section]?.count else { return 0 }
+        return numberOfRows
     }
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> ItemTableCellModel? {
-        return readyNewsFeedItems.observable[indexPath.row]
+        return readyNewsFeedItems.observable[indexPath.section]?[indexPath.row]
         
     }
     
     func fetchNewsFeed() {
-        model.getNewsFeed()
+        timer.eventHandler = { [weak self] in
+             self?.model.getNewsFeed()
+        }
+        timer.resume()
     }
     
     func getNewData() {
-        model.getNewPosts()
+        timer.eventHandler = { [weak self] in
+            self?.model.getNewPosts()
+        }
+        timer.resume()
     }
 }

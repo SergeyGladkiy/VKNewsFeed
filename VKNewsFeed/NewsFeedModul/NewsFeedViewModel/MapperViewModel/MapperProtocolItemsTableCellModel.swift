@@ -9,5 +9,5 @@
 import Foundation
 
 protocol MapperProtocolItemsTableCellModel {
-    func buildNewsFeedItems(items: [NewsFeedElement], profiles: [Profile], groups: [Group]) -> [ItemTableCellModel]
+    func buildNewsFeedItems(items: [NewsFeedElement], profiles: [Profile], groups: [Group]) -> [Int: [ItemTableCellModel]]
 }

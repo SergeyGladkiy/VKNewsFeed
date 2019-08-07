@@ -16,7 +16,7 @@ class RepeatingTimer {
     private var state: State = .suspended
     private lazy var _timer: DispatchSourceTimer = {
         let timer = DispatchSource.makeTimerSource()
-        timer.schedule(deadline: .now() + self.timeInterval)
+        timer.schedule(deadline: .now() + self.timeInterval, repeating: self.timeInterval)
         timer.setEventHandler(handler: { [weak self] in
             self?.eventHandler?()
         })
@@ -27,6 +27,21 @@ class RepeatingTimer {
     init(timeInterval: TimeInterval) {
         self.timeInterval = timeInterval
     }
+    
+    deinit {
+        _timer.setEventHandler {}
+        _timer.cancel()
+        /*
+         Если таймер был suspended, то вызов cancel без resuming вызовет
+         краш! Боле подробно можно посмотреть -
+         https://forums.developer.apple.com/thread/15902
+         */
+        resume()
+        eventHandler = nil
+    }
+}
+
+extension RepeatingTimer: RepeatingTimerProtocol {
     func resume() {
         guard state != .resumed else {
             return
@@ -41,16 +56,5 @@ class RepeatingTimer {
         }
         state = .suspended
         _timer.suspend()
-    }
-    deinit {
-        _timer.setEventHandler {}
-        _timer.cancel()
-        /*
-         Если таймер был suspended, то вызов cancel без resuming вызовет
-         краш! Боле подробно можно посмотреть -
-         https://forums.developer.apple.com/thread/15902
-         */
-        resume()
-        eventHandler = nil
     }
 }

@@ -20,7 +20,7 @@ class FeedViewController: UIViewController {
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action:#selector(refreshAction), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
         return refreshControl
     }()
     
@@ -30,13 +30,9 @@ class FeedViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         layout()
         registerCell()
-        tableView.separatorStyle = .none
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.addSubview(refreshControl)
-        footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
-        tableView.tableFooterView = footerView // add cell for it
-        self.footerView.showLoader()
+        
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,24 +44,25 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         viewModel.state.bind { [weak self] vmState in
             guard let self = self else {
                 return
             }
             switch vmState {
             case .initial: return
-            case .readyShowItems://(let array):
-//                self.tableView.beginUpdates()
-//                self.tableView.insertRows(at: array, with: .bottom)
-//                self.refreshControl.endRefreshing()
-//                self.tableView.endUpdates()
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-            case .newItemsReceived:
-                return
+            case .readyShowItems(let firstIndex, let lastIndex):
+                if !self.viewModel.readyNewsFeedItems.observable.isEmpty {
+                    self.tableView.beginUpdates()
+                    self.tableView.insertSections(IndexSet(integersIn: firstIndex...lastIndex),
+                                                  with: .bottom)
+                    self.tableView.endUpdates()
+                    self.footerView.cancelLoader()
+                    self.refreshControl.endRefreshing()
+                }
             }
         }
-        viewModel.fetchNewsFeed() 
+        viewModel.fetchNewsFeed()
     }
     
     private func registerCell() {
@@ -97,6 +94,14 @@ extension FeedViewController {
         let newTableViewTrailingAnchor = newTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         self.tableView = newTableView
         
+        tableView.separatorStyle = .none
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.addSubview(refreshControl)
+        footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
+        tableView.tableFooterView = footerView
+        self.footerView.showLoader()
+        
         NSLayoutConstraint.activate([newTableViewTopAnchor,
                                      newTableViewBottomAnchor,
                                      newTableViewLeadingAnchor,
@@ -106,12 +111,12 @@ extension FeedViewController {
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 3
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSection()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfRows() ?? 0
+        return viewModel?.numberOfRows(section: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,17 +136,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         }
         if let itemCell = tableView.dequeueReusableCell(withIdentifier: type(of: model).reuseIdentifier, for: indexPath) as? PhotoNewsfeedCell {
             itemCell.viewModel = model as? NewsfeedPhotoCellModel
-            
-            //let photos = itemCell.viewModel?.attachments ?? []
-            let ratio = itemCell.viewModel?.ratio
-            let width = UIScreen.main.bounds.width
-            let height = width * (CGFloat(ratio!))
-            //let height = width * (CGFloat(photos.first!.height) / CGFloat(photos.first!.width))
-//            print("width screen \(width)")
-//            print("height \(height)")
-//            print("fetchable height \(photos.first!.height)")
-//            print("fetchable width \(photos.first!.width)")
-            itemCell.config(size: CGSize(width: width, height: height))
+            if let itemCellModel = itemCell.viewModel {
+                itemCell.config(size: CGSize(width: itemCellModel.width, height: itemCellModel.height))
+            }
             cell = itemCell
         }
         
@@ -153,7 +150,8 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height {
+        if scrollView.contentOffset.y + scrollView.frame.size.height + 30 >= scrollView.contentSize.height {
+            footerView.showLoader()
             viewModel?.getNewData()
         }
     }

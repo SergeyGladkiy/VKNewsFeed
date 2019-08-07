@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class NewsfeedPhotoCellModel: ItemTableCellModel {
     static var reuseIdentifier: String = PhotoNewsfeedCell.reuseIdentifier
     
     let attachments: [PhotoAttachment]
-    let ratio: Int
-    init(photo: [PhotoAttachment], ratio: Int) {
+    var height: CGFloat = 0
+    var width: CGFloat = UIScreen.main.bounds.width
+    
+    init(photo: [PhotoAttachment], ratio: Double) {
         self.attachments = photo
-        self.ratio = ratio
+        self.height = width * CGFloat(ratio)
     }
 }

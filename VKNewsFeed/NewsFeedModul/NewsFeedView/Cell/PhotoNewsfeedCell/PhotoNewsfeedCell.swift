@@ -37,6 +37,8 @@ class PhotoNewsfeedCell: UITableViewCell {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
             photoCollectionView.collectionViewLayout = layout
+            photoCollectionView.isPagingEnabled = true
+            photoCollectionView.showsHorizontalScrollIndicator = false
         }
     }
     
@@ -47,6 +49,7 @@ class PhotoNewsfeedCell: UITableViewCell {
             guard let viewModel = viewModel else { return }
             photoModels = viewModel.attachments
             photoCollectionView.reloadData()
+            
         }
     }
     

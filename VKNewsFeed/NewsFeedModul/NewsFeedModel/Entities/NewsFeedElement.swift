@@ -9,6 +9,7 @@
 import Foundation
 
 class NewsFeedElement {
+    
     let sourceId: Int
     let postId: Int
     let text: String?

@@ -10,12 +10,12 @@ import Foundation
 
 protocol FeedViewModelProtocol {
     var state: Observable<FeedViewModelState> { get }
-    var readyNewsFeedItems: Observable<[ItemTableCellModel]> { get }
+    var readyNewsFeedItems: Observable<[Int : [ItemTableCellModel]]> { get }
     
-    func twoWayDataBinding()
     func getNewData()
     func fetchNewsFeed()
     func cellViewModel(forIndexPath indexPath: IndexPath) -> ItemTableCellModel?
-    func numberOfRows() -> Int
+    func numberOfRows(section: Int) -> Int
+    func numberOfSection() -> Int
 }
 

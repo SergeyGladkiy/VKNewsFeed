@@ -16,6 +16,10 @@ struct PhotoAttachment {
     var url: String
     var height: Int
     var width: Int
+    
+    var ratio: Double {
+        return Double(height) / Double(width) //Double(width) / Double(height)
+    }
 }
 
 struct Photo: Decodable {

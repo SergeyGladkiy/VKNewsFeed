@@ -32,10 +32,6 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //authService = AuthService()
-        //authService = AppDelegate.shared().authService
-        //authService = CoordinatorAuth.sharedInstance.authService
-        print(authService)
     }
 }
 

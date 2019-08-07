@@ -19,7 +19,8 @@ class NewsfeedAssembly: Assembly {
         container.register(FeedViewModelProtocol.self) { r in
             let model = r.resolve(FeedModelProtocol.self)!
             let mapper = r.resolve(MapperProtocolItemsTableCellModel.self)!
-            return FeedViewModel(model: model, state: .init(observable: .initial), mapper: mapper)
+            let timer = r.resolve(RepeatingTimerProtocol.self)!
+            return FeedViewModel(model: model, state: .init(observable: .initial), mapper: mapper, timer: timer)
         }
         
         container.register(MapperProtocolItemsTableCellModel.self) { _ in
@@ -35,6 +36,9 @@ class NewsfeedAssembly: Assembly {
         
         container.register(MapperProtocolNewsFeedElement.self) { _ in
             MapperNewsFeedElement()
+        }
+        container.register(RepeatingTimerProtocol.self) { _ in
+            RepeatingTimer(timeInterval: 1)
         }
     }
 }

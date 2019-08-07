@@ -22,23 +22,9 @@ final class MapperItemsTableCellModel {
     }
     
     private func buildNewsfeedPhotoCellModel(attachments: [PhotoAttachment]) -> ItemTableCellModel {
-        let maxHeight = attachments.map { $0.height }.max()
+        let maxAttachments = attachments.max { $0.ratio < $1.ratio }
+        guard let ratio = maxAttachments?.ratio else { return NewsfeedPhotoCellModel(photo: [], ratio: 0)}
 
-        let item = attachments.first(where: {
-            $0.height == maxHeight
-        })
-        var ratio: Int = 0
-        if item!.width < maxHeight! {
-            ratio = maxHeight! / item!.width
-        } else {
-            ratio = item!.width / maxHeight!
-        }
-        
-        //        print("maxHeight \(maxHeight)")
-        //        print("height \(attachments.map { $0.height })")
-        //        print("width maxHeight \(item?.width)")
-        //        print("width \(attachments.map { $0.width })")
-        
         return NewsfeedPhotoCellModel(photo: attachments, ratio: ratio)
     }
     
@@ -88,26 +74,27 @@ final class MapperItemsTableCellModel {
 extension MapperItemsTableCellModel: MapperProtocolItemsTableCellModel {
     
     
-    func buildNewsFeedItems(items: [NewsFeedElement], profiles: [Profile], groups: [Group]) -> [ItemTableCellModel] {
+    func buildNewsFeedItems(items: [NewsFeedElement], profiles: [Profile], groups: [Group]) -> [Int: [ItemTableCellModel]] {
         
-        var cellModels = [ItemTableCellModel]()
-        for item in items {
-            guard let userProfile = getUserProfiles(for: item.sourceId, profiles: profiles, groups: groups) else {
+        var cellModels = [Int: [ItemTableCellModel]]()
+        for item in items.enumerated() {
+            guard let userProfile = getUserProfiles(for: item.element.sourceId, profiles: profiles, groups: groups) else {
                 return cellModels
             }
-            let header = buildNewsfeedHeaderCellModel(item: item, profile: userProfile)
-            cellModels.append(header)
-            if item.text != "" {
-                let post = buildNewsfeedTextCellModel(item: item)
-                cellModels.append(post)
+            let header = buildNewsfeedHeaderCellModel(item: item.element, profile: userProfile)
+            cellModels[item.offset] = [ItemTableCellModel]()
+            cellModels[item.offset]?.append(header)
+            if item.element.text != "" {
+                let post = buildNewsfeedTextCellModel(item: item.element)
+                cellModels[item.offset]?.append(post)
             }
-            let attachments = getAttachments(item: item)
+            let attachments = getAttachments(item: item.element)
             if !attachments.isEmpty {
                 let photos = buildNewsfeedPhotoCellModel(attachments: attachments)
-                cellModels.append(photos)
+                cellModels[item.offset]?.append(photos)
             }
-            let actions = buildNewsfeedFooterCellModel(item: item)
-            cellModels.append(actions)
+            let actions = buildNewsfeedFooterCellModel(item: item.element)
+            cellModels[item.offset]?.append(actions)
         }
         return cellModels
     }
