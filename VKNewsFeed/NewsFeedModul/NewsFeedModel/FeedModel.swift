@@ -12,15 +12,20 @@ class FeedModel {
     
     var models = Observable<NewsFeedData>(observable: NewsFeedData())
     
-    private var persistantService: PersistentServiceProtocol
+    private var persistentService: PersistentServiceProtocol
     private var fetcher: DataFetcher
     private var newPostsFrom: String?
     private var mapper: MapperProtocolNewsFeedElement
     
-    init(fetcher: DataFetcher, persistantService: PersistentServiceProtocol, mapper: MapperProtocolNewsFeedElement) {
+    private var persistentItems = [NewsPersistentItem]()
+    
+    init(fetcher: DataFetcher, persistentService: PersistentServiceProtocol, mapper: MapperProtocolNewsFeedElement) {
         self.fetcher = fetcher
-        self.persistantService = persistantService
+        self.persistentService = persistentService
         self.mapper = mapper
+        self.persistentService.changesClosure = { type in
+            print("type - \(type)")
+        }
     }
 }
 
@@ -37,8 +42,15 @@ extension FeedModel: FeedModelProtocol {
     func getNewsFeed() {
         fetcher.getFeed(nextBatchFrom: nil) { [weak self] feedResponse in
             guard let feedResponse = feedResponse else { return }
-            guard let newsFeedData = self?.mapper.getElements(of: feedResponse) else { return }
-            self?.models.observable = newsFeedData
+//            guard let newsFeedData = self?.mapper.getElements(of: feedResponse) else { return }
+//            self?.models.observable = newsFeedData
+            self?.persistentService.saveTask(items: feedResponse.items) {
+                self?.persistentItems = self?.persistentService.fetchData() ?? []
+                guard let items = self?.persistentItems else { return }
+                print("ебана - \(items)")
+                guard let newsFeedData = self?.mapper.getElements(of: feedResponse, and: items) else { return }
+                self?.models.observable = newsFeedData
+            }
 
         }
     }
@@ -48,9 +60,9 @@ extension FeedModel: FeedModelProtocol {
         newPostsFrom = models.observable.nextFrom
         fetcher.getFeed(nextBatchFrom: newPostsFrom) { [weak self] feedResponse in
             guard let feedResponse = feedResponse, self?.models.observable.nextFrom != feedResponse.nextFrom else { return }
-             guard let newsFeedData = self?.mapper.getElements(of: feedResponse) else { return }
+            guard let items = self?.persistentItems else { return }
+            guard let newsFeedData = self?.mapper.getElements(of: feedResponse, and: items) else { return }
             self?.models.observable.items.append(contentsOf: newsFeedData.items)
-            print("my nextFrom \(self?.models.observable.nextFrom) and response nextFrom \(newsFeedData.nextFrom)")
             self?.models.observable.nextFrom = newsFeedData.nextFrom
             
             
@@ -78,10 +90,6 @@ extension FeedModel: FeedModelProtocol {
             guard let response = self?.models.observable else { return }
             self?.models.observable = response
         }
-    }
-    
-    func saveTask(items: [FeedItem]) {
-        persistantService.saveTask(items: items)
     }
 }
 

@@ -62,11 +62,9 @@ final class MapperItemsTableCellModel {
         }
         
         return attachments.compactMap({ attachment  in
-            guard let photo = attachment.photo else {
-                return nil
-            }
+
             
-            return PhotoAttachment(url: photo.srcBIG, height: photo.height, width: photo.width)
+            return PhotoAttachment(url: attachment.url, height: Int(attachment.height), width: Int(attachment.width))
         })
     }
 }

@@ -18,9 +18,9 @@ class NewsFeedElement {
     let likes: Observable<Int?>
     let reposts: Observable<Int?>
     let views: Observable<Int?>
-    let attachments: [Attechment]?
+    let attachments: [AttechmentPersistentItem]?
     
-    init(sourceId: Int, postId: Int, text: String?, date: Double, comments: Observable<Int?>, likes: Observable<Int?>, reposts: Observable<Int?>, views: Observable<Int?>, attachments: [Attechment]) {
+    init(sourceId: Int, postId: Int, text: String?, date: Double, comments: Observable<Int?>, likes: Observable<Int?>, reposts: Observable<Int?>, views: Observable<Int?>, attachments: [AttechmentPersistentItem]) {
         self.sourceId = sourceId
         self.postId = postId
         self.text = text

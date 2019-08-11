@@ -12,6 +12,11 @@ import Swinject
 class PersistentServiceAssembly: Assembly {
     func assemble(container: Container) {
         container.register(PersistentServiceProtocol.self) { resolver in
-            return PersistentService() }.inObjectScope(.container)
+            let mapper = resolver.resolve(PersistentServiceEntitiesMapperProtocol.self)!
+            return PersistentService(mapper: mapper) }.inObjectScope(.container)
+        
+        container.register(PersistentServiceEntitiesMapperProtocol.self) { _ in
+            MapperPresistentService()
+        }
     }
 }

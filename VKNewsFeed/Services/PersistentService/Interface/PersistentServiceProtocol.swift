@@ -9,5 +9,8 @@
 import Foundation
 
 protocol PersistentServiceProtocol {
-    func saveTask(items: [FeedItem])
+    var changesClosure: (DatabaseItemsChageType<NewsPersistentItem>) -> Void {get set}
+    
+    func saveTask(items: [FeedItem], completion: @escaping () -> Void)
+    func fetchData() -> [NewsPersistentItem]
 }

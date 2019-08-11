@@ -10,6 +10,7 @@ import Foundation
 
 protocol DataFetcher {
     func getFeed(nextBatchFrom: String?, response: @escaping (FeedResponse?) -> Void)
+    
 }
 
 class NetworkDataFetcher: DataFetcher {

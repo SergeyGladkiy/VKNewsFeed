@@ -53,12 +53,14 @@ class FeedViewController: UIViewController {
             case .initial: return
             case .readyShowItems(let firstIndex, let lastIndex):
                 if !self.viewModel.readyNewsFeedItems.observable.isEmpty {
-                    self.tableView.beginUpdates()
-                    self.tableView.insertSections(IndexSet(integersIn: firstIndex...lastIndex),
-                                                  with: .bottom)
-                    self.tableView.endUpdates()
-                    self.footerView.cancelLoader()
-                    self.refreshControl.endRefreshing()
+                    DispatchQueue.main.async {
+                        self.tableView.beginUpdates()
+                        self.tableView.insertSections(IndexSet(integersIn: firstIndex...lastIndex),
+                                                      with: .bottom)
+                        self.tableView.endUpdates()
+                        self.footerView.cancelLoader()
+                        self.refreshControl.endRefreshing()
+                    }
                 }
             }
         }

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol MapperProtocolNewsFeedElement {
-    func getElements(of item: FeedResponse) -> NewsFeedData
+    func getElements(of networkData: FeedResponse, and persistentItem: [NewsPersistentItem]) -> NewsFeedData
 }
