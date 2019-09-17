@@ -48,6 +48,7 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         viewModel.state.bind { [weak self] vmState in
             guard let self = self else {
                 return
