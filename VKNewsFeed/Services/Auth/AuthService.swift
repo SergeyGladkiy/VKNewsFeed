@@ -26,7 +26,7 @@ final class AuthService: NSObject {
     }
     
     func wakeUpSeccion() {
-        let scope = ["wall", "friends"]
+        let scope = ["wall", "friends", "offline"]
         
         //необходимо проверить, доступна ли предыдущая сессия
         VKSdk.wakeUpSession(scope) { [delegate] (state, error) in

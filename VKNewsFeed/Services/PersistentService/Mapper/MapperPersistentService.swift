@@ -21,8 +21,9 @@ class MapperPresistentService: PersistentServiceEntitiesMapperProtocol {
             
             let _ = photoAttach?.forEach({ (attach) in
                 guard let width = attach.photo?.width,
-                    let height = attach.photo?.height else { return }
-                let attach = AttechmentPersistentItem(url: attach.photo?.srcBIG ?? "", width: Float(width), height: Float(height))
+                    let height = attach.photo?.height,
+                    let url = attach.photo?.srcBIG else { return }
+                let attach = AttechmentPersistentItem(url: url, width: Float(width), height: Float(height))
                 arrayAttach.append(attach)
             })
             
@@ -33,9 +34,8 @@ class MapperPresistentService: PersistentServiceEntitiesMapperProtocol {
     
     func entities(fromItems: [NewsPersistentItem], in context: NSManagedObjectContext) -> [NewsFeedItem] {
         let items = fromItems.compactMap { item -> NewsFeedItem? in
-            let entity = NSEntityDescription.entity(forEntityName: "NewsFeedItem", in: context)
-            let newsFeedItem = NSManagedObject(entity: entity!, insertInto: context) as! NewsFeedItem
-            
+            guard let entity = NSEntityDescription.entity(forEntityName: "NewsFeedItem", in: context) else { return NewsFeedItem() }
+            let newsFeedItem = NSManagedObject(entity: entity, insertInto: context) as! NewsFeedItem
             
             newsFeedItem.sourceId = Int64(item.sourceId)
             newsFeedItem.postId = Int64(item.postId)
@@ -54,12 +54,12 @@ class MapperPresistentService: PersistentServiceEntitiesMapperProtocol {
             let attachments = NSMutableSet()
             item.attachments.forEach({ (attch) in
                 guard let entity = NSEntityDescription.entity(forEntityName: "Attachment", in: context) else { return }
-                let attachment = NSManagedObject(entity: entity, insertInto: context) as! Attachment
-                attachment.height = attch.height
-                attachment.width = attch.width
-                attachment.url = attch.url
-                attachment.attachToNews = newsFeedItem
-                attachments.add(attachment)
+                let attachmentsOfItem = NSManagedObject(entity: entity, insertInto: context) as! Attachment
+                attachmentsOfItem.height = attch.height
+                attachmentsOfItem.width = attch.width
+                attachmentsOfItem.url = attch.url
+                attachmentsOfItem.attachToNews = newsFeedItem
+                attachments.add(attachmentsOfItem)
             })
             newsFeedItem.addToNewsToAttach(attachments)
             return newsFeedItem

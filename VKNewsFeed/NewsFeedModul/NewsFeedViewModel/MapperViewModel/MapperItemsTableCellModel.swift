@@ -62,8 +62,6 @@ final class MapperItemsTableCellModel {
         }
         
         return attachments.compactMap({ attachment  in
-
-            
             return PhotoAttachment(url: attachment.url, height: Int(attachment.height), width: Int(attachment.width))
         })
     }

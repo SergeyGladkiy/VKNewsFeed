@@ -31,27 +31,28 @@ class FeedModel {
 
 extension FeedModel: FeedModelProtocol {
    
-    func twoWayDataBinding() {
-//        models.observable.items.map { $0.comments.bind { [weak self] comments in
-//            guard let self = self else { return }
-//            }
-//        }
-    }
-    
     // MARK: use vk Newsfeed.get without param start_from
     func getNewsFeed() {
         fetcher.getFeed(nextBatchFrom: nil) { [weak self] feedResponse in
             guard let feedResponse = feedResponse else { return }
-//            guard let newsFeedData = self?.mapper.getElements(of: feedResponse) else { return }
-//            self?.models.observable = newsFeedData
             self?.persistentService.saveTask(items: feedResponse.items) {
                 self?.persistentItems = self?.persistentService.fetchData() ?? []
                 guard let items = self?.persistentItems else { return }
-                print("ебана - \(items)")
+                print("ебана - \(items.count)")
                 guard let newsFeedData = self?.mapper.getElements(of: feedResponse, and: items) else { return }
                 self?.models.observable = newsFeedData
             }
-
+            
+        }
+        fetcher.getConversations(response: { (response) in
+            print("messages created with items - \(String(describing: response?.items))")
+        })
+        fetcher.getLongPollServer { (response) in
+            print("server longPoll equal - \(String(describing: response?.server))")
+        }
+        
+        fetcher.getTinder { (response) in
+            print("response by tinder - \(response)")
         }
     }
     
@@ -60,8 +61,12 @@ extension FeedModel: FeedModelProtocol {
         newPostsFrom = models.observable.nextFrom
         fetcher.getFeed(nextBatchFrom: newPostsFrom) { [weak self] feedResponse in
             guard let feedResponse = feedResponse, self?.models.observable.nextFrom != feedResponse.nextFrom else { return }
+            
+            self?.persistentService.saveTask(items: feedResponse.items) {
+            self?.persistentItems = self?.persistentService.fetchData() ?? []
             guard let items = self?.persistentItems else { return }
             guard let newsFeedData = self?.mapper.getElements(of: feedResponse, and: items) else { return }
+            print("newPostFrom - \(String(describing: self?.newPostsFrom)), came nextFrom from net - \(String(describing: newsFeedData.nextFrom))")
             self?.models.observable.items.append(contentsOf: newsFeedData.items)
             self?.models.observable.nextFrom = newsFeedData.nextFrom
             
@@ -86,9 +91,8 @@ extension FeedModel: FeedModelProtocol {
             }
             self?.models.observable.groups = groups
             
-            /// -----???---- observable on groups and profile
             guard let response = self?.models.observable else { return }
-            self?.models.observable = response
+                self?.models.observable = response }
         }
     }
 }

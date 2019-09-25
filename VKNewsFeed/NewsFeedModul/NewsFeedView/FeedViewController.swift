@@ -54,14 +54,18 @@ class FeedViewController: UIViewController {
             case .readyShowItems(let firstIndex, let lastIndex):
                 if !self.viewModel.readyNewsFeedItems.observable.isEmpty {
                     DispatchQueue.main.async {
-                        self.tableView.beginUpdates()
-                        self.tableView.insertSections(IndexSet(integersIn: firstIndex...lastIndex),
-                                                      with: .bottom)
-                        self.tableView.endUpdates()
-                        self.footerView.cancelLoader()
-                        self.refreshControl.endRefreshing()
+                        if firstIndex == 0 {
+                            self.tableView.reloadData()
+                        } else {
+                            self.tableView.beginUpdates()
+                            self.tableView.insertSections(IndexSet(integersIn: firstIndex...lastIndex), with: .bottom)
+                            self.tableView.endUpdates()
+                        }
+                        self.cancelLoader()
+                        self.endRefreshing()
                     }
                 }
+            case .showLoader: self.showLoader()
             }
         }
         viewModel.fetchNewsFeed()
@@ -81,7 +85,27 @@ class FeedViewController: UIViewController {
     }
     
     @objc private func refreshAction(_ refreshControl: UIRefreshControl) {
-        viewModel?.fetchNewsFeed()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.viewModel?.fetchNewsFeed()
+        }
+        
+    }
+}
+
+extension FeedViewController {
+    func cancelLoader() {
+        footerView.cancelLoader()
+    }
+    
+    func showLoader() {
+        footerView.showLoader()
+    }
+    
+    func endRefreshing() {
+        refreshControl.endRefreshing()
     }
 }
 
@@ -102,7 +126,7 @@ extension FeedViewController {
         tableView.addSubview(refreshControl)
         footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         tableView.tableFooterView = footerView
-        self.footerView.showLoader()
+        showLoader()
         
         NSLayoutConstraint.activate([newTableViewTopAnchor,
                                      newTableViewBottomAnchor,

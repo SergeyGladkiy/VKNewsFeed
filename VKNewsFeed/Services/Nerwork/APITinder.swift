@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct APIforTinder {
+    static let scheme = "https"
+    static let host = "api.gotinder.com"
+    
+    static let path = "/v2/recs/core"
+}

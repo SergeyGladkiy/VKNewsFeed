@@ -12,6 +12,12 @@
 		82020BC922D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82020BC822D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift */; };
 		82020BCD22D7747C00A2C6EA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82020BCC22D7747C00A2C6EA /* Observable.swift */; };
 		82700E1222DFA89400D55E46 /* FeedModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82700E1122DFA89400D55E46 /* FeedModelProtocol.swift */; };
+		827E9199230A9A1B000F53E9 /* APITinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E9198230A9A1B000F53E9 /* APITinder.swift */; };
+		827E91DB230AF997000F53E9 /* TinderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91DA230AF997000F53E9 /* TinderResponse.swift */; };
+		827E91DD230AF9A9000F53E9 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91DC230AF9A9000F53E9 /* UserResult.swift */; };
+		827E91DF230AF9BC000F53E9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91DE230AF9BC000F53E9 /* UserInfo.swift */; };
+		827E91E1230AF9C0000F53E9 /* UserAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91E0230AF9C0000F53E9 /* UserAttachment.swift */; };
+		827E91E3230AF9C6000F53E9 /* UserTeaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91E2230AF9C6000F53E9 /* UserTeaser.swift */; };
 		828E884722E1E92B00FA3D9E /* HeaderNewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E884622E1E92B00FA3D9E /* HeaderNewsfeedCell.swift */; };
 		828E884B22E1E9E800FA3D9E /* HeaderNewsfeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828E884A22E1E9E800FA3D9E /* HeaderNewsfeedCell.xib */; };
 		828E884D22E1EFBA00FA3D9E /* PostTextNewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E884C22E1EFBA00FA3D9E /* PostTextNewsfeedCell.swift */; };
@@ -31,6 +37,12 @@
 		82AECC9522FB7ECD00575ED9 /* NewsPersistentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECC9422FB7ECD00575ED9 /* NewsPersistentItem.swift */; };
 		82AECC9722FB85C700575ED9 /* DatabaseItemsChageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECC9622FB85C700575ED9 /* DatabaseItemsChageType.swift */; };
 		82AECC9922FB861400575ED9 /* FetchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECC9822FB861400575ED9 /* FetchResultController.swift */; };
+		82AECCA023059AA200575ED9 /* MessagesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECC9F23059AA200575ED9 /* MessagesItem.swift */; };
+		82AECCA22305A23B00575ED9 /* MessagesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECCA12305A23B00575ED9 /* MessagesResponse.swift */; };
+		82AECCA4230608DA00575ED9 /* ProfileMessagesRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECCA3230608DA00575ED9 /* ProfileMessagesRepresentable.swift */; };
+		82AECCA62306091D00575ED9 /* AttachmentMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECCA52306091D00575ED9 /* AttachmentMessages.swift */; };
+		82AECCA923060D3B00575ED9 /* ConnectionDataLongPollServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECCA823060D3B00575ED9 /* ConnectionDataLongPollServer.swift */; };
+		82AECCAE2307139100575ED9 /* LongPollServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AECCAD2307139100575ED9 /* LongPollServerResponse.swift */; };
 		82B4A24522D242BE00D9EF4A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A24422D242BE00D9EF4A /* NetworkService.swift */; };
 		82B4A24722D2441C00D9EF4A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A24622D2441C00D9EF4A /* API.swift */; };
 		82B4A24A22D2577D00D9EF4A /* FeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B4A24922D2577D00D9EF4A /* FeedResponse.swift */; };
@@ -95,6 +107,12 @@
 		82020BC822D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperProtocolItemsTableCellModel.swift; sourceTree = "<group>"; };
 		82020BCC22D7747C00A2C6EA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		82700E1122DFA89400D55E46 /* FeedModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelProtocol.swift; sourceTree = "<group>"; };
+		827E9198230A9A1B000F53E9 /* APITinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITinder.swift; sourceTree = "<group>"; };
+		827E91DA230AF997000F53E9 /* TinderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderResponse.swift; sourceTree = "<group>"; };
+		827E91DC230AF9A9000F53E9 /* UserResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
+		827E91DE230AF9BC000F53E9 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		827E91E0230AF9C0000F53E9 /* UserAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAttachment.swift; sourceTree = "<group>"; };
+		827E91E2230AF9C6000F53E9 /* UserTeaser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTeaser.swift; sourceTree = "<group>"; };
 		828E884622E1E92B00FA3D9E /* HeaderNewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderNewsfeedCell.swift; sourceTree = "<group>"; };
 		828E884A22E1E9E800FA3D9E /* HeaderNewsfeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderNewsfeedCell.xib; sourceTree = "<group>"; };
 		828E884C22E1EFBA00FA3D9E /* PostTextNewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextNewsfeedCell.swift; sourceTree = "<group>"; };
@@ -114,6 +132,12 @@
 		82AECC9422FB7ECD00575ED9 /* NewsPersistentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPersistentItem.swift; sourceTree = "<group>"; };
 		82AECC9622FB85C700575ED9 /* DatabaseItemsChageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseItemsChageType.swift; sourceTree = "<group>"; };
 		82AECC9822FB861400575ED9 /* FetchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchResultController.swift; sourceTree = "<group>"; };
+		82AECC9F23059AA200575ED9 /* MessagesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesItem.swift; sourceTree = "<group>"; };
+		82AECCA12305A23B00575ED9 /* MessagesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesResponse.swift; sourceTree = "<group>"; };
+		82AECCA3230608DA00575ED9 /* ProfileMessagesRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMessagesRepresentable.swift; sourceTree = "<group>"; };
+		82AECCA52306091D00575ED9 /* AttachmentMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentMessages.swift; sourceTree = "<group>"; };
+		82AECCA823060D3B00575ED9 /* ConnectionDataLongPollServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionDataLongPollServer.swift; sourceTree = "<group>"; };
+		82AECCAD2307139100575ED9 /* LongPollServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPollServerResponse.swift; sourceTree = "<group>"; };
 		82B4A24422D242BE00D9EF4A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		82B4A24622D2441C00D9EF4A /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		82B4A24922D2577D00D9EF4A /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
@@ -202,6 +226,18 @@
 			path = MapperViewModel;
 			sourceTree = "<group>";
 		};
+		827E919B230AA5C1000F53E9 /* DataTiderAPI */ = {
+			isa = PBXGroup;
+			children = (
+				827E91DA230AF997000F53E9 /* TinderResponse.swift */,
+				827E91DC230AF9A9000F53E9 /* UserResult.swift */,
+				827E91DE230AF9BC000F53E9 /* UserInfo.swift */,
+				827E91E0230AF9C0000F53E9 /* UserAttachment.swift */,
+				827E91E2230AF9C6000F53E9 /* UserTeaser.swift */,
+			);
+			path = DataTiderAPI;
+			sourceTree = "<group>";
+		};
 		828E884522E1E88300FA3D9E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +306,45 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		82AECC9D23059A6B00575ED9 /* Newsfeed */ = {
+			isa = PBXGroup;
+			children = (
+				82B4A24922D2577D00D9EF4A /* FeedResponse.swift */,
+				82CC1BE222DF9BC3009FF3A6 /* FeedItem.swift */,
+				82CC1BE422DF9E46009FF3A6 /* ProfileRepresentable.swift */,
+				828E885C22E7071700FA3D9E /* Attachment.swift */,
+			);
+			path = Newsfeed;
+			sourceTree = "<group>";
+		};
+		82AECC9E23059A7D00575ED9 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				82AECCA12305A23B00575ED9 /* MessagesResponse.swift */,
+				82AECC9F23059AA200575ED9 /* MessagesItem.swift */,
+				82AECCA3230608DA00575ED9 /* ProfileMessagesRepresentable.swift */,
+				82AECCA52306091D00575ED9 /* AttachmentMessages.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		82AECCAB2307132800575ED9 /* LongPollService */ = {
+			isa = PBXGroup;
+			children = (
+				82AECCAC2307134B00575ED9 /* Models */,
+			);
+			path = LongPollService;
+			sourceTree = "<group>";
+		};
+		82AECCAC2307134B00575ED9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				82AECCA823060D3B00575ED9 /* ConnectionDataLongPollServer.swift */,
+				82AECCAD2307139100575ED9 /* LongPollServerResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		82B4A24322D2406300D9EF4A /* NewsFeedView */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,10 +357,9 @@
 		82B4A24822D2576300D9EF4A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				82B4A24922D2577D00D9EF4A /* FeedResponse.swift */,
-				82CC1BE222DF9BC3009FF3A6 /* FeedItem.swift */,
-				82CC1BE422DF9E46009FF3A6 /* ProfileRepresentable.swift */,
-				828E885C22E7071700FA3D9E /* Attachment.swift */,
+				82AECC9E23059A7D00575ED9 /* Messages */,
+				82AECC9D23059A6B00575ED9 /* Newsfeed */,
+				827E919B230AA5C1000F53E9 /* DataTiderAPI */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,6 +371,8 @@
 				82B4A24422D242BE00D9EF4A /* NetworkService.swift */,
 				82B4A24F22D2847300D9EF4A /* NetworkDataFetcher.swift */,
 				82B4A24622D2441C00D9EF4A /* API.swift */,
+				827E9198230A9A1B000F53E9 /* APITinder.swift */,
+				82B4A24822D2576300D9EF4A /* Models */,
 			);
 			path = Nerwork;
 			sourceTree = "<group>";
@@ -545,8 +621,8 @@
 			children = (
 				82B4A25B22D3B05A00D9EF4A /* PersistentService */,
 				82B4A25122D36F0C00D9EF4A /* Auth */,
+				82AECCAB2307132800575ED9 /* LongPollService */,
 				82B4A24B22D2597A00D9EF4A /* Nerwork */,
-				82B4A24822D2576300D9EF4A /* Models */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -735,6 +811,7 @@
 				82D22DA422CE378E002DC597 /* AdjustingLabel.swift in Sources */,
 				82C42EDB22F309970076E15F /* AuthServiceDelegate.swift in Sources */,
 				82C42ED722F309010076E15F /* PersistentServiceAssembly.swift in Sources */,
+				82AECCA22305A23B00575ED9 /* MessagesResponse.swift in Sources */,
 				82C42EC422E860B10076E15F /* FooterView.swift in Sources */,
 				82AECC9522FB7ECD00575ED9 /* NewsPersistentItem.swift in Sources */,
 				82D22DAC22CE378E002DC597 /* Structs.swift in Sources */,
@@ -746,15 +823,20 @@
 				82020BC922D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift in Sources */,
 				82AECC9722FB85C700575ED9 /* DatabaseItemsChageType.swift in Sources */,
 				82700E1222DFA89400D55E46 /* FeedModelProtocol.swift in Sources */,
+				82AECCA923060D3B00575ED9 /* ConnectionDataLongPollServer.swift in Sources */,
 				82D22DA922CE378E002DC597 /* IButtonDising.swift in Sources */,
 				82D22DA522CE378E002DC597 /* ILabelDising.swift in Sources */,
 				82C42EB922E84CE70076E15F /* PhotoNewsfeedCell.swift in Sources */,
 				82D22DAF22CE4A1F002DC597 /* FeedViewController.swift in Sources */,
 				82CC1BE122DE35F1009FF3A6 /* PrototcolCoordinatorAuth.swift in Sources */,
+				82AECCAE2307139100575ED9 /* LongPollServerResponse.swift in Sources */,
 				82B4A26122D3B7C300D9EF4A /* NewsFeedModelItems.xcdatamodeld in Sources */,
 				828E886322E7188000FA3D9E /* CellReusable.swift in Sources */,
+				82AECCA4230608DA00575ED9 /* ProfileMessagesRepresentable.swift in Sources */,
 				82C42ED922F3098C0076E15F /* AuthServiceProtocol.swift in Sources */,
 				82B4A25022D2847300D9EF4A /* NetworkDataFetcher.swift in Sources */,
+				827E91E3230AF9C6000F53E9 /* UserTeaser.swift in Sources */,
+				827E91DB230AF997000F53E9 /* TinderResponse.swift in Sources */,
 				82AECC9922FB861400575ED9 /* FetchResultController.swift in Sources */,
 				82C42EB222E848B60076E15F /* NewsfeedFooterCellModel.swift in Sources */,
 				82C42EDD22F30A0C0076E15F /* AuthServiceAssembly.swift in Sources */,
@@ -766,6 +848,7 @@
 				82C42EE422F3134B0076E15F /* PersistentServiceProtocol.swift in Sources */,
 				828E885722E2157C00FA3D9E /* WebImageView.swift in Sources */,
 				82C42EE122F30ED00076E15F /* NewsfeedAssembly.swift in Sources */,
+				82AECCA62306091D00575ED9 /* AttachmentMessages.swift in Sources */,
 				828E886022E7172800FA3D9E /* ItemTableCellModel.swift in Sources */,
 				82020BC722D75C5400A2C6EA /* MapperItemsTableCellModel.swift in Sources */,
 				82C42EE622F34CDB0076E15F /* NewsFeedData.swift in Sources */,
@@ -773,8 +856,11 @@
 				82D22DAB22CE378E002DC597 /* Button.swift in Sources */,
 				82C42ECA22EFA00A0076E15F /* RepeatingTimer.swift in Sources */,
 				82B4A24A22D2577D00D9EF4A /* FeedResponse.swift in Sources */,
+				827E9199230A9A1B000F53E9 /* APITinder.swift in Sources */,
 				828E885922E33DC200FA3D9E /* ImageDownloadManager.swift in Sources */,
+				827E91DD230AF9A9000F53E9 /* UserResult.swift in Sources */,
 				82B4A26322D3BBED00D9EF4A /* PersistentService.swift in Sources */,
+				827E91E1230AF9C0000F53E9 /* UserAttachment.swift in Sources */,
 				828E885122E1F14800FA3D9E /* FooterNewsfeedCell.swift in Sources */,
 				828E886722E71B3300FA3D9E /* NewsfeedHeaderCellModel.swift in Sources */,
 				82B4A24522D242BE00D9EF4A /* NetworkService.swift in Sources */,
@@ -789,6 +875,7 @@
 				828E886922E71E7A00FA3D9E /* NewsfeedPhotosCellModel.swift in Sources */,
 				82C42ED522F308AD0076E15F /* NetworkingAssembly.swift in Sources */,
 				82020BCD22D7747C00A2C6EA /* Observable.swift in Sources */,
+				82AECCA023059AA200575ED9 /* MessagesItem.swift in Sources */,
 				82D22D7F22CE155C002DC597 /* AppDelegate.swift in Sources */,
 				82AECC8F22FB7DBE00575ED9 /* PersistentServiceEntitiesMapperProtocol.swift in Sources */,
 				82C42EEF22F355970076E15F /* MapperNewsFeedElement.swift in Sources */,
@@ -797,6 +884,7 @@
 				82CC1BDF22DE26B8009FF3A6 /* CoordinatorAuth.swift in Sources */,
 				82CC1BE322DF9BC3009FF3A6 /* FeedItem.swift in Sources */,
 				82CC1BDA22DE263D009FF3A6 /* ApplicationCoordinator.swift in Sources */,
+				827E91DF230AF9BC000F53E9 /* UserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

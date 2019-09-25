@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class LongPollServerResponseWrapped: Decodable {
+    let response: LongPollServerResponse
+}
+
+class LongPollServerResponse: Decodable {
+    //
+}

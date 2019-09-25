@@ -35,7 +35,9 @@ class FooterView: UIView {
     }
     
     func showLoader() {
-        loader.startAnimating()
+        DispatchQueue.main.async {
+            self.loader.startAnimating()
+        }
     }
     
     func cancelLoader() {

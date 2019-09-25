@@ -11,6 +11,7 @@ import Foundation
 enum FeedViewModelState {
     case initial
     case readyShowItems(Int, Int)
+    case showLoader
 }
 
 class FeedViewModel {
@@ -20,6 +21,8 @@ class FeedViewModel {
     var state: Observable<FeedViewModelState>
     
     private var firstIndex = 0
+    
+    private var firstCallfetchNewsFeed = false
     
     private var timer: RepeatingTimerProtocol
     
@@ -35,11 +38,18 @@ class FeedViewModel {
         
         model.models.bind { [weak self] response in
             guard let self = self else { return }
-            self.readyNewsFeedItems.observable = self.mapper.buildNewsFeedItems(items: response.items, profiles: response.profiles, groups: response.groups)
-            
-            self.state.observable = .readyShowItems(self.firstIndex, self.readyNewsFeedItems.observable.count-1)
-            self.firstIndex = self.readyNewsFeedItems.observable.count
             self.timer.suspend()
+            self.readyNewsFeedItems.observable = self.mapper.buildNewsFeedItems(items: response.items, profiles: response.profiles, groups: response.groups)
+            if self.firstCallfetchNewsFeed == true {
+                self.state.observable = .readyShowItems(0, 49)
+                print("firstIndex \(self.firstIndex) secondIndex \(self.readyNewsFeedItems.observable.count-1)")
+                self.firstIndex = self.readyNewsFeedItems.observable.count
+            } else {
+                self.state.observable = .readyShowItems(self.firstIndex, self.readyNewsFeedItems.observable.count-1)
+                print("firstIndex \(self.firstIndex) secondIndex \(self.readyNewsFeedItems.observable.count-1)")
+                self.firstIndex = self.readyNewsFeedItems.observable.count
+            }
+            
         }
     } // add state errors
 }
@@ -61,15 +71,16 @@ extension FeedViewModel: FeedViewModelProtocol {
     }
     
     func fetchNewsFeed() {
-        timer.eventHandler = { [weak self] in
-             self?.model.getNewsFeed()
-        }
-        timer.resume()
+        firstCallfetchNewsFeed = true
+        model.getNewsFeed()
     }
     
     func getNewData() {
+        firstCallfetchNewsFeed = false
+        model.getNewPosts()
         timer.eventHandler = { [weak self] in
-            self?.model.getNewPosts()
+            self?.timer.suspend()
+            self?.state.observable = .showLoader
         }
         timer.resume()
     }

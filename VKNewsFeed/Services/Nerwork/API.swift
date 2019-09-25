@@ -14,4 +14,7 @@ struct API {
     static let version = "5.101"
     
     static let newsFeed = "/method/newsfeed.get"
+    static let messages = "/method/messages.getConversations"
+    static let createChat = "/method/messages.createChat"
+    static let getLongPoll = "/method/messages.getLongPollServer"
 }

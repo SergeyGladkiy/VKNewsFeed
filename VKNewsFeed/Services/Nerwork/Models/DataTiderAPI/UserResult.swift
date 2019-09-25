@@ -11,6 +11,7 @@ import Foundation
 struct UserResult: Decodable {
     let user: UserInfo
     let distanceMi: Int
+    let s_number: Int32
     let teaser: UserTeaser
     let teasers: [UserTeaser]
 }

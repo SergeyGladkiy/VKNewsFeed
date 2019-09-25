@@ -36,6 +36,16 @@ extension CoordinatorAuth: AuthServiceDelegate {
     
     func authServiceDidSignInFail() {
         print(#function)
+        let alert = UIAlertController(title: "Не удалось подключиться к серверу ", message: "Отсутсвует соединение с интернетом", preferredStyle: .alert)
+        let refrashRequestAction = UIAlertAction(title: "Обновить страницу", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            var authService: AuthServiceProtocol = DependenceProvider.resolve()
+            authService.delegate = self
+            let authVC = AuthViewController(authService: authService)
+            AppDelegate.shared().window?.rootViewController = authVC
+        }
+        alert.addAction(refrashRequestAction)
+        AppDelegate.shared().window?.rootViewController?.show(alert, sender: nil)
     }
     
     
