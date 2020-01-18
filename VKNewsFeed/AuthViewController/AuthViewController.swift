@@ -17,8 +17,9 @@ class AuthViewController: UIViewController {
     private var arrayConstraints = [NSLayoutConstraint]()
     
     init(authService: AuthServiceProtocol) {
-        super.init(nibName: nil, bundle: nil)
+        
         self.authService = authService
+        super.init(nibName: nil, bundle: nil)
         view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         layout()
         

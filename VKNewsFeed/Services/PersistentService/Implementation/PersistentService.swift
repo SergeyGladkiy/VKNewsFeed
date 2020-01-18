@@ -40,10 +40,9 @@ class PersistentService: NSObject {
         let fetchRequest = NSFetchRequest<NewsFeedItem>(entityName: "NewsFeedItem")
         // Configure the request's entity, and optionally its predicate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                    managedObjectContext: persistentContainer.viewContext,
-                                                    sectionNameKeyPath: nil,
-                                                    cacheName: nil)
+        let controller = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         do {
             try controller.performFetch()
             self.controller = controller
@@ -61,7 +60,7 @@ extension PersistentService: PersistentServiceProtocol {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NewsFeedItem")
             do {
                 let objects = try context.fetch(fetchRequest) as? [NSManagedObject]
-                _ = objects.map{$0.map{context.delete($0)}}
+                _ = objects.map {$0.map{context.delete($0)}}
                 try context.save()
             } catch let error {
                 print("ERROR DELETING : \(error)")

@@ -364,7 +364,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		82B4A24B22D2597A00D9EF4A /* Nerwork */ = {
+		82B4A24B22D2597A00D9EF4A /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				82B4A24C22D259A800D9EF4A /* NetworkProtocol */,
@@ -374,7 +374,7 @@
 				827E9198230A9A1B000F53E9 /* APITinder.swift */,
 				82B4A24822D2576300D9EF4A /* Models */,
 			);
-			path = Nerwork;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		82B4A24C22D259A800D9EF4A /* NetworkProtocol */ = {
@@ -622,7 +622,7 @@
 				82B4A25B22D3B05A00D9EF4A /* PersistentService */,
 				82B4A25122D36F0C00D9EF4A /* Auth */,
 				82AECCAB2307132800575ED9 /* LongPollService */,
-				82B4A24B22D2597A00D9EF4A /* Nerwork */,
+				82B4A24B22D2597A00D9EF4A /* Network */,
 			);
 			path = Services;
 			sourceTree = "<group>";

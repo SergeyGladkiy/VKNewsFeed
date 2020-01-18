@@ -16,13 +16,9 @@ class FeedViewController: UIViewController {
     
     private weak var tableView: UITableView!
     
-    private lazy var footerView = FooterView()
+    private weak var footerView: FooterView!
     
-    private lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
-        return refreshControl
-    }()
+    private weak var refreshControl: UIRefreshControl!
     
     init(viewModel: FeedViewModelProtocol) {
         self.viewModel = viewModel
@@ -120,10 +116,21 @@ extension FeedViewController {
         let newTableViewTrailingAnchor = newTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         self.tableView = newTableView
         
+        let activityIndicator = FooterView()
+        footerView = activityIndicator
+        
+        let refreshContrInstance: UIRefreshControl = {
+            let refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
+            return refreshControl
+        }()
+        refreshControl = refreshContrInstance
+        
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.addSubview(refreshControl)
+        
         footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         tableView.tableFooterView = footerView
         showLoader()
@@ -177,11 +184,12 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.contentOffset.y + scrollView.frame.size.height + 30 >= scrollView.contentSize.height {
-            footerView.showLoader()
+            //footerView.showLoader()
             viewModel?.getNewData()
         }
     }
 }
+
 
 
 

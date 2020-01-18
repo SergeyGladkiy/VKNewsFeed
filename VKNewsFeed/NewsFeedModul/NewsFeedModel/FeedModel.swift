@@ -44,9 +44,11 @@ extension FeedModel: FeedModelProtocol {
             }
             
         }
+        
         fetcher.getConversations(response: { (response) in
             print("messages created with items - \(String(describing: response?.items))")
         })
+        
         fetcher.getLongPollServer { (response) in
             print("server longPoll equal - \(String(describing: response?.server))")
         }

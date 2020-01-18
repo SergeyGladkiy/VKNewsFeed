@@ -79,7 +79,9 @@ extension FeedViewModel: FeedViewModelProtocol {
         firstCallfetchNewsFeed = false
         model.getNewPosts()
         timer.eventHandler = { [weak self] in
+            print("thread from dispatch timer\(qos_class_self())")
             self?.timer.suspend()
+            
             self?.state.observable = .showLoader
         }
         timer.resume()

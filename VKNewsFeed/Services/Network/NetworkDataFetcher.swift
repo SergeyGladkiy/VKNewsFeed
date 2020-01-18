@@ -67,7 +67,7 @@ extension NetworkDataFetcher: DataFetcher {
             }
             
             guard let data = data else { return }
-            
+            print(data)
             let decoded = self.decodeJSON(type: MessagesResponseWrapped.self, from: data)
             response(decoded?.response)
         }

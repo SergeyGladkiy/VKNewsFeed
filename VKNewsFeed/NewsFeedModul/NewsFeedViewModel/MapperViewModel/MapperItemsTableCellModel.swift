@@ -92,6 +92,7 @@ extension MapperItemsTableCellModel: MapperProtocolItemsTableCellModel {
             let actions = buildNewsfeedFooterCellModel(item: item.element)
             cellModels[item.offset]?.append(actions)
         }
+        
         return cellModels
     }
 }

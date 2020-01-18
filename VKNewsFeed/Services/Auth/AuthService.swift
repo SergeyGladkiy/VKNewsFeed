@@ -78,6 +78,7 @@ extension AuthService: VKSdkUIDelegate {
 
 extension AuthService: AuthServiceProtocol {
     var token: String? {
+        //print("accessToken --- \(VKSdk.accessToken()?.accessToken)")
         return VKSdk.accessToken()?.accessToken
     }
 }
