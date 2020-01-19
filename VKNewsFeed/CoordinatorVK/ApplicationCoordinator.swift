@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ApplicationCoordinator {
     private var window: UIWindow?
     private var coordinatorVKEnter: ProtocolCoordinatorAuth?
@@ -15,7 +16,7 @@ class ApplicationCoordinator {
 
 extension ApplicationCoordinator: Coordinator {
     func prepareWindow() -> UIWindow? {
-        coordinatorVKEnter = CoordinatorAuth()
+        coordinatorVKEnter = DependenceProvider.resolve()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = coordinatorVKEnter!.start()
         window?.makeKeyAndVisible()

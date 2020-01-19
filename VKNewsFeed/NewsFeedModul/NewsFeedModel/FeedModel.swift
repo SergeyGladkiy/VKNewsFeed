@@ -10,28 +10,51 @@ import Foundation
 
 class FeedModel {
     
-    var models = Observable<FeedResponse>(observable: FeedResponse())
+    var models = Observable<NewsFeedData>(observable: NewsFeedData())
     
-    private var persistantService: PersistantService
+    private var persistentService: PersistentServiceProtocol
     private var fetcher: DataFetcher
     private var newPostsFrom: String?
+    private var mapper: MapperProtocolNewsFeedElement
     
-    init(fetcher: DataFetcher, persistantService: PersistantService) {
+    private var persistentItems = [NewsPersistentItem]()
+    
+    init(fetcher: DataFetcher, persistentService: PersistentServiceProtocol, mapper: MapperProtocolNewsFeedElement) {
         self.fetcher = fetcher
-        self.persistantService = persistantService
-        
+        self.persistentService = persistentService
+        self.mapper = mapper
+        self.persistentService.changesClosure = { type in
+            print("type - \(type)")
+        }
     }
 }
 
 extension FeedModel: FeedModelProtocol {
    
-    
     // MARK: use vk Newsfeed.get without param start_from
     func getNewsFeed() {
         fetcher.getFeed(nextBatchFrom: nil) { [weak self] feedResponse in
             guard let feedResponse = feedResponse else { return }
-            self?.models.observable = feedResponse
-
+            self?.persistentService.saveTask(items: feedResponse.items) {
+                self?.persistentItems = self?.persistentService.fetchData() ?? []
+                guard let items = self?.persistentItems else { return }
+                print("ебана - \(items.count)")
+                guard let newsFeedData = self?.mapper.getElements(of: feedResponse, and: items) else { return }
+                self?.models.observable = newsFeedData
+            }
+            
+        }
+        
+        fetcher.getConversations(response: { (response) in
+            print("messages created with items - \(String(describing: response?.items))")
+        })
+        
+        fetcher.getLongPollServer { (response) in
+            print("server longPoll equal - \(String(describing: response?.server))")
+        }
+        
+        fetcher.getTinder { (response) in
+            print("response by tinder - \(response)")
         }
     }
     
@@ -41,40 +64,38 @@ extension FeedModel: FeedModelProtocol {
         fetcher.getFeed(nextBatchFrom: newPostsFrom) { [weak self] feedResponse in
             guard let feedResponse = feedResponse, self?.models.observable.nextFrom != feedResponse.nextFrom else { return }
             
-            self?.models.observable.items.append(contentsOf: feedResponse.items)
-            print("my nextFrom \(self?.models.observable.nextFrom) and response nextFrom \(feedResponse.nextFrom)")
-            self?.models.observable.nextFrom = feedResponse.nextFrom
+            self?.persistentService.saveTask(items: feedResponse.items) {
+            self?.persistentItems = self?.persistentService.fetchData() ?? []
+            guard let items = self?.persistentItems else { return }
+            guard let newsFeedData = self?.mapper.getElements(of: feedResponse, and: items) else { return }
+            print("newPostFrom - \(String(describing: self?.newPostsFrom)), came nextFrom from net - \(String(describing: newsFeedData.nextFrom))")
+            self?.models.observable.items.append(contentsOf: newsFeedData.items)
+            self?.models.observable.nextFrom = newsFeedData.nextFrom
             
             
             
-            var profiles = feedResponse.profiles
+            var profiles = newsFeedData.profiles
             if let oldProfiles = self?.models.observable.profiles {
                 let oldProfilesFiltered = oldProfiles.filter({ oldProfile in
-                    !feedResponse.profiles.contains(where: { $0.id == oldProfile.id })
+                    !newsFeedData.profiles.contains(where: { $0.id == oldProfile.id })
                 })
                 profiles.append(contentsOf: oldProfilesFiltered)
             }
             self?.models.observable.profiles = profiles
             
             
-            var groups = feedResponse.groups
+            var groups = newsFeedData.groups
             if let oldGroups = self?.models.observable.groups {
                 let oldGroupsFiltered = oldGroups.filter({ oldGroup in
-                    !feedResponse.groups.contains(where: { $0.id == oldGroup.id })
+                    !newsFeedData.groups.contains(where: { $0.id == oldGroup.id })
                 })
                 groups.append(contentsOf: oldGroupsFiltered)
-                print(groups)
             }
             self?.models.observable.groups = groups
             
             guard let response = self?.models.observable else { return }
-            self?.models.observable = response
-            //completion(response)
+                self?.models.observable = response }
         }
-    }
-    
-    func saveTask(items: [FeedItem]) {
-        persistantService.saveTask(items: items)
     }
 }
 

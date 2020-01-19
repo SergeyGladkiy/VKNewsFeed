@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,14 +14,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fdr-L6-pul" id="EW5-Nw-Jfa">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="67.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDa-M5-WA6">
-                        <rect key="frame" x="0.0" y="47.5" width="320" height="20"/>
+                        <rect key="frame" x="0.0" y="48" width="320" height="20"/>
                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Ugt-K8-UVT"/>
+                            <constraint firstAttribute="height" constant="20" id="HlH-Ka-ZSE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pbo-Je-tvV"/>
                     </view>
@@ -101,6 +99,7 @@
                     <constraint firstItem="8c3-Xw-A1l" firstAttribute="leading" secondItem="gZE-S7-TsA" secondAttribute="trailing" constant="5" id="h5a-N4-c25"/>
                     <constraint firstAttribute="bottom" secondItem="rDa-M5-WA6" secondAttribute="bottom" id="hon-Oe-juC"/>
                     <constraint firstItem="6ip-AC-cl3" firstAttribute="top" secondItem="gZE-S7-TsA" secondAttribute="top" id="k7N-ff-akF"/>
+                    <constraint firstItem="rDa-M5-WA6" firstAttribute="top" secondItem="gZE-S7-TsA" secondAttribute="bottom" constant="6" id="kt2-9X-bTK"/>
                     <constraint firstAttribute="trailing" secondItem="tHa-ns-9BO" secondAttribute="trailing" constant="58" id="lxY-DQ-11i"/>
                     <constraint firstItem="tHa-ns-9BO" firstAttribute="width" secondItem="gZE-S7-TsA" secondAttribute="width" id="s90-Eq-cqe"/>
                     <constraint firstItem="tHa-ns-9BO" firstAttribute="bottom" secondItem="gZE-S7-TsA" secondAttribute="bottom" id="scy-6Z-ERk"/>
@@ -109,7 +108,6 @@
                     <constraint firstAttribute="trailing" secondItem="rDa-M5-WA6" secondAttribute="trailing" id="ur4-YW-jcD"/>
                     <constraint firstItem="gZE-S7-TsA" firstAttribute="top" secondItem="EW5-Nw-Jfa" secondAttribute="top" constant="12" id="uvw-dT-fKc"/>
                     <constraint firstItem="UND-Br-X6L" firstAttribute="centerY" secondItem="6ip-AC-cl3" secondAttribute="centerY" id="wrO-WW-ss9"/>
-                    <constraint firstItem="rDa-M5-WA6" firstAttribute="top" secondItem="EW5-Nw-Jfa" secondAttribute="top" constant="47.5" id="x3J-Eh-twY"/>
                     <constraint firstItem="puy-WX-ZbT" firstAttribute="leading" secondItem="gP3-TW-5p0" secondAttribute="trailing" constant="5" id="xQV-SG-XhB"/>
                     <constraint firstItem="puy-WX-ZbT" firstAttribute="centerY" secondItem="gP3-TW-5p0" secondAttribute="centerY" id="zlM-XD-Bz1"/>
                 </constraints>

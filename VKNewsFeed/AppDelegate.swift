@@ -15,16 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //AuthServiceDelegate
 
     var window: UIWindow?
     
-    var authService: AuthService!
-    
     static func shared() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.authService = AuthService()
-        authService.delegate = CoordinatorAuth.sharedInstance
-        let appCoordinator = ApplicationCoordinator()
+        let appCoordinator: Coordinator = DependenceProvider.resolve()
         window = appCoordinator.prepareWindow()
       
         return true
