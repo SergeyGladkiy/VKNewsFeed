@@ -12,11 +12,6 @@
 		82020BC922D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82020BC822D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift */; };
 		82020BCD22D7747C00A2C6EA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82020BCC22D7747C00A2C6EA /* Observable.swift */; };
 		82700E1222DFA89400D55E46 /* FeedModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82700E1122DFA89400D55E46 /* FeedModelProtocol.swift */; };
-		827E91DB230AF997000F53E9 /* TinderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91DA230AF997000F53E9 /* TinderResponse.swift */; };
-		827E91DD230AF9A9000F53E9 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91DC230AF9A9000F53E9 /* UserResult.swift */; };
-		827E91DF230AF9BC000F53E9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91DE230AF9BC000F53E9 /* UserInfo.swift */; };
-		827E91E1230AF9C0000F53E9 /* UserAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91E0230AF9C0000F53E9 /* UserAttachment.swift */; };
-		827E91E3230AF9C6000F53E9 /* UserTeaser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E91E2230AF9C6000F53E9 /* UserTeaser.swift */; };
 		828E884722E1E92B00FA3D9E /* HeaderNewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E884622E1E92B00FA3D9E /* HeaderNewsfeedCell.swift */; };
 		828E884B22E1E9E800FA3D9E /* HeaderNewsfeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828E884A22E1E9E800FA3D9E /* HeaderNewsfeedCell.xib */; };
 		828E884D22E1EFBA00FA3D9E /* PostTextNewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E884C22E1EFBA00FA3D9E /* PostTextNewsfeedCell.swift */; };
@@ -106,11 +101,6 @@
 		82020BC822D75C6C00A2C6EA /* MapperProtocolItemsTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperProtocolItemsTableCellModel.swift; sourceTree = "<group>"; };
 		82020BCC22D7747C00A2C6EA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		82700E1122DFA89400D55E46 /* FeedModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelProtocol.swift; sourceTree = "<group>"; };
-		827E91DA230AF997000F53E9 /* TinderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderResponse.swift; sourceTree = "<group>"; };
-		827E91DC230AF9A9000F53E9 /* UserResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
-		827E91DE230AF9BC000F53E9 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		827E91E0230AF9C0000F53E9 /* UserAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAttachment.swift; sourceTree = "<group>"; };
-		827E91E2230AF9C6000F53E9 /* UserTeaser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTeaser.swift; sourceTree = "<group>"; };
 		828E884622E1E92B00FA3D9E /* HeaderNewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderNewsfeedCell.swift; sourceTree = "<group>"; };
 		828E884A22E1E9E800FA3D9E /* HeaderNewsfeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderNewsfeedCell.xib; sourceTree = "<group>"; };
 		828E884C22E1EFBA00FA3D9E /* PostTextNewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextNewsfeedCell.swift; sourceTree = "<group>"; };
@@ -222,18 +212,6 @@
 				82020BC622D75C5400A2C6EA /* MapperItemsTableCellModel.swift */,
 			);
 			path = MapperViewModel;
-			sourceTree = "<group>";
-		};
-		827E919B230AA5C1000F53E9 /* DataTiderAPI */ = {
-			isa = PBXGroup;
-			children = (
-				827E91DA230AF997000F53E9 /* TinderResponse.swift */,
-				827E91DC230AF9A9000F53E9 /* UserResult.swift */,
-				827E91DE230AF9BC000F53E9 /* UserInfo.swift */,
-				827E91E0230AF9C0000F53E9 /* UserAttachment.swift */,
-				827E91E2230AF9C6000F53E9 /* UserTeaser.swift */,
-			);
-			path = DataTiderAPI;
 			sourceTree = "<group>";
 		};
 		828E884522E1E88300FA3D9E /* Cell */ = {
@@ -357,7 +335,6 @@
 			children = (
 				82AECC9E23059A7D00575ED9 /* Messages */,
 				82AECC9D23059A6B00575ED9 /* Newsfeed */,
-				827E919B230AA5C1000F53E9 /* DataTiderAPI */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -832,8 +809,6 @@
 				82AECCA4230608DA00575ED9 /* ProfileMessagesRepresentable.swift in Sources */,
 				82C42ED922F3098C0076E15F /* AuthServiceProtocol.swift in Sources */,
 				82B4A25022D2847300D9EF4A /* NetworkDataFetcher.swift in Sources */,
-				827E91E3230AF9C6000F53E9 /* UserTeaser.swift in Sources */,
-				827E91DB230AF997000F53E9 /* TinderResponse.swift in Sources */,
 				82AECC9922FB861400575ED9 /* FetchResultController.swift in Sources */,
 				82C42EB222E848B60076E15F /* NewsfeedFooterCellModel.swift in Sources */,
 				82C42EDD22F30A0C0076E15F /* AuthServiceAssembly.swift in Sources */,
@@ -854,9 +829,7 @@
 				82C42ECA22EFA00A0076E15F /* RepeatingTimer.swift in Sources */,
 				82B4A24A22D2577D00D9EF4A /* FeedResponse.swift in Sources */,
 				828E885922E33DC200FA3D9E /* ImageDownloadManager.swift in Sources */,
-				827E91DD230AF9A9000F53E9 /* UserResult.swift in Sources */,
 				82B4A26322D3BBED00D9EF4A /* PersistentService.swift in Sources */,
-				827E91E1230AF9C0000F53E9 /* UserAttachment.swift in Sources */,
 				828E885122E1F14800FA3D9E /* FooterNewsfeedCell.swift in Sources */,
 				828E886722E71B3300FA3D9E /* NewsfeedHeaderCellModel.swift in Sources */,
 				82B4A24522D242BE00D9EF4A /* NetworkService.swift in Sources */,
@@ -880,7 +853,6 @@
 				82CC1BDF22DE26B8009FF3A6 /* CoordinatorAuth.swift in Sources */,
 				82CC1BE322DF9BC3009FF3A6 /* FeedItem.swift in Sources */,
 				82CC1BDA22DE263D009FF3A6 /* ApplicationCoordinator.swift in Sources */,
-				827E91DF230AF9BC000F53E9 /* UserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
