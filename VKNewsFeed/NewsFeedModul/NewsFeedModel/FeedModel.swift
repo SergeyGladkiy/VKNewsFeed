@@ -52,10 +52,6 @@ extension FeedModel: FeedModelProtocol {
         fetcher.getLongPollServer { (response) in
             print("server longPoll equal - \(String(describing: response?.server))")
         }
-        
-        fetcher.getTinder { (response) in
-            print("response by tinder - \(response)")
-        }
     }
     
     // MARK: use vk Newsfeed.get with param start_from

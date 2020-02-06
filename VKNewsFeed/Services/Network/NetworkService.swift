@@ -42,15 +42,6 @@ final class NetworkService {
         
         return components.url!
     }
-    
-    private func getUrlForTinder(from path: String) -> URL {
-        var components = URLComponents()
-        components.scheme = APIforTinder.scheme
-        components.host = APIforTinder.host
-        components.path = path
-        
-        return components.url!
-    }
 }
 
 extension NetworkService: Networking {
@@ -72,17 +63,6 @@ extension NetworkService: Networking {
         let task = createDataTask(from: request, completion: completion)
         task.resume()
         print(url)
-    }
-    
-    func requestTinder(path: String, completion: @escaping (Data?, Error?) -> Void) {
-       
-        let url = getUrlForTinder(from: path)
-        var request = URLRequest(url: url)
-        request.addValue("b9a8f2aa-c628-4f37-84df-b575bd74ef43", forHTTPHeaderField: "X-Auth-Token")
-        let task = createDataTask(from: request, completion: completion)
-        task.resume()
-        print(url)
-        print("request for tinder API \(request)")
     }
     
 }

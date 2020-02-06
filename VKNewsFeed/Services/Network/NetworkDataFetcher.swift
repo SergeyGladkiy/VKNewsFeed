@@ -13,7 +13,6 @@ protocol DataFetcher {
     func getFeed(nextBatchFrom: String?, response: @escaping (FeedResponse?) -> Void)
     func getConversations(response: @escaping (MessagesResponse?) -> Void)
     func getLongPollServer(response: @escaping (ConnectionDataLongPollServer?) -> Void)
-    func getTinder(response: @escaping (TinderResponseWrapped?) -> Void)
 //    func getLongPollConnection(server: String, key: String, timestamp: Int, response: @escaping (FeedResponse?) -> Void) -> Void
 }
 
@@ -129,21 +128,5 @@ extension NetworkDataFetcher: DataFetcher {
             let decoded = self.decodeJSON(type: LongPollServerResponseWrapped.self, from: data)
             response(decoded?.response)
         }
-    }
-    
-    //MARK: TinderConnection
-    func getTinder(response: @escaping (TinderResponseWrapped?) -> Void) {
-        networking.requestTinder(path: APIforTinder.path) { (data, error) in
-            if let error = error {
-                print("Error received requesting data: \(error.localizedDescription)")
-                response(nil)
-            }
-            
-            guard let data = data else { return }
-            print("data - \(data)")
-            let decoded = self.decodeJSON(type: TinderResponseWrapped.self, from: data)
-            response(decoded)
-        }
-        
     }
 }

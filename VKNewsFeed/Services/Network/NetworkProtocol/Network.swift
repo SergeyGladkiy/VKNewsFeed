@@ -11,6 +11,4 @@ import Foundation
 protocol Networking {
     func request(path: String, params: [String: String], completion: @escaping (Data?, Error?) -> Void)
     func requestLongPollServer(path: String, params: [String : String], completion: @escaping (Data?, Error?) -> Void)
-    
-    func requestTinder(path: String, completion: @escaping (Data?, Error?) -> Void)
 }
