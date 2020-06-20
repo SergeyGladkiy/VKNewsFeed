@@ -29,10 +29,10 @@ final class MapperItemsTableCellModel {
     }
     
     private func buildNewsfeedFooterCellModel(item: NewsFeedElement) -> ItemTableCellModel {
-        let likes = item.likes.observable ?? 0
-        let comments = item.comments.observable ?? 0
-        let reposts = item.reposts.observable ?? 0
-        let viewers = item.views.observable ?? 0
+        let likes = item.likes ?? 0
+        let comments = item.comments ?? 0
+        let reposts = item.reposts ?? 0
+        let viewers = item.views ?? 0
         return NewsfeedFooterCellModel(likeCount: likes,
                                         commentCount: comments,
                                         shareCount: reposts,
@@ -57,11 +57,11 @@ final class MapperItemsTableCellModel {
     }
     
     private func getAttachments(item: NewsFeedElement) -> [PhotoAttachment] {
-        guard let attachments = item.attachments else {
-            return []
-        }
+//        guard let attachments = item.attachments else {
+//            return []
+//        }
         
-        return attachments.compactMap({ attachment  in
+        return item.attachments.compactMap({ attachment  in
             return PhotoAttachment(url: attachment.url, height: Int(attachment.height), width: Int(attachment.width))
         })
     }

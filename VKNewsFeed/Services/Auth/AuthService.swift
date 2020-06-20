@@ -25,7 +25,7 @@ final class AuthService: NSObject {
         vkSdk.uiDelegate = self
     }
     
-    func wakeUpSeccion() {
+    func wakeUpSession() {
         let scope = ["wall", "friends", "offline"]
         
         //необходимо проверить, доступна ли предыдущая сессия
@@ -58,6 +58,7 @@ extension AuthService: VKSdkDelegate {
     
     func vkSdkUserAuthorizationFailed() {
         print(#function)
+        delegate?.authServiceDidSignInFail() //?
     }
 }
 

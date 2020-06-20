@@ -12,9 +12,9 @@ class PhotoNewsfeedCell: UITableViewCell {
     
     private var size: CGSize = .zero
     
-    override var intrinsicContentSize: CGSize {
-        return size
-    }
+//    override var intrinsicContentSize: CGSize {
+//        return size
+//    }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var copy = size
@@ -28,17 +28,7 @@ class PhotoNewsfeedCell: UITableViewCell {
     
     @IBOutlet weak var photoCollectionView: UICollectionView! {
         didSet {
-            photoCollectionView.delegate = self
-            photoCollectionView.dataSource = self
-            
-            let nib = UINib(nibName: CollectionViewCellNewsfeed.reuseIdentifier, bundle: Bundle(for: CollectionViewCellNewsfeed.self))
-            photoCollectionView.register(nib, forCellWithReuseIdentifier: CollectionViewCellNewsfeed.reuseIdentifier)
-            
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .horizontal
-            photoCollectionView.collectionViewLayout = layout
-            photoCollectionView.isPagingEnabled = true
-            photoCollectionView.showsHorizontalScrollIndicator = false
+            settingCollectionView()
         }
     }
     
@@ -48,6 +38,7 @@ class PhotoNewsfeedCell: UITableViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
             photoModels = viewModel.attachments
+            config(size: CGSize(width: viewModel.width, height: viewModel.height))
             photoCollectionView.reloadData()
             
         }
@@ -56,6 +47,20 @@ class PhotoNewsfeedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+    }
+    
+    func settingCollectionView() {
+        photoCollectionView.delegate = self
+        photoCollectionView.dataSource = self
+        
+        let nib = UINib(nibName: CollectionViewCellNewsfeed.reuseIdentifier, bundle: Bundle(for: CollectionViewCellNewsfeed.self))
+        photoCollectionView.register(nib, forCellWithReuseIdentifier: CollectionViewCellNewsfeed.reuseIdentifier)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        photoCollectionView.collectionViewLayout = layout
+        photoCollectionView.isPagingEnabled = true
+        photoCollectionView.showsHorizontalScrollIndicator = false
     }
     
 }

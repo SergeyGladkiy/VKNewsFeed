@@ -21,9 +21,14 @@ class PersistentService: NSObject {
     
     init(mapper: PersistentServiceEntitiesMapperProtocol) {
         self.mapper = mapper
+        
+        //By default, the provided name value is used to name the persistent store and is used to look up the name of the NSManagedObjectModel object to be used with the NSPersistentContainer object.
         persistentContainer = NSPersistentContainer(name: "NewsFeedModelItems")
         super.init()
         
+        //????!!!!!
+        //or let privateMOC = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        //privateMOC.parentContext = moc
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         persistentContainer.loadPersistentStores {[weak self] desc, error in
             guard let error = error else {
@@ -117,25 +122,29 @@ extension PersistentService: PersistentServiceProtocol {
 
         do {
             let result = try context.fetch(request)
-            return result.map {
-                let array = $0.newsToAttach?.allObjects as? [Attachment]
-                
-                var castArray = [AttechmentPersistentItem]()
-                
-                array?.forEach({ (attach) in
-                    let castAttach = AttechmentPersistentItem(url: attach.url ?? "", width: attach.width, height: attach.height)
-                    castArray.append(castAttach)
-                })
-                
-                return NewsPersistentItem(sourceId: Int($0.sourceId),
-                                             postId: Int($0.postId),
-                                             text: $0.text,
-                                             date: $0.date,
-                                             comments: Int($0.comments),
-                                             likes: Int($0.likes),
-                                             reposts: Int($0.reposts),
-                                             views: Int($0.views),
-                                             attachments: castArray) }
+            
+            return mapper.items(fromEntities: result)
+            
+//            return result.map {
+//                let array = $0.newsToAttach?.allObjects as? [Attachment]
+//
+//                var castArray = [AttechmentPersistentItem]()
+//
+//                array?.forEach({ (attach) in
+//                    let castAttach = AttechmentPersistentItem(url: attach.url ?? "", width: attach.width, height: attach.height)
+//                    castArray.append(castAttach)
+//
+//                })
+//
+//                return NewsPersistentItem(sourceId: Int($0.sourceId),
+//                                             postId: Int($0.postId),
+//                                             text: $0.text,
+//                                             date: $0.date,
+//                                             comments: Int($0.comments),
+//                                             likes: Int($0.likes),
+//                                             reposts: Int($0.reposts),
+//                                             views: Int($0.views),
+//                                             attachments: castArray) }
         } catch {
             print("Fetching data Failed, \(error.localizedDescription)")
         }

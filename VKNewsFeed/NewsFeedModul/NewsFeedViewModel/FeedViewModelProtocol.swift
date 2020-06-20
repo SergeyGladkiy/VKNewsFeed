@@ -10,7 +10,7 @@ import Foundation
 
 protocol FeedViewModelProtocol {
     var state: Observable<FeedViewModelState> { get }
-    var readyNewsFeedItems: Observable<[Int : [ItemTableCellModel]]> { get }
+    var readyNewsFeedItems: [Int : [ItemTableCellModel]] { get }
     
     func getNewData()
     func fetchNewsFeed()

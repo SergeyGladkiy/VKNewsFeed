@@ -12,5 +12,9 @@ import Swinject
 class ApplicationCoordinatorAssembly: Assembly {
     func assemble(container: Container) {
         container.register(Coordinator.self) { _ in ApplicationCoordinator() }.inObjectScope(.container)
+        
+        container.register(ProtocolCoordinatorAuth.self) { _ in
+            CoordinatorAuth()
+        }
     }
 }

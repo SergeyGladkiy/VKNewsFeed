@@ -28,7 +28,6 @@ class HeaderNewsfeedCell: UITableViewCell {
             self.nickName.text = model.name
             self.dateLabel.text = model.date
             self.userImage.set(imageURL: model.imageUrl)
-            //self.userImage.layer.cornerRadius = userImage.frame.width / 2
         }
     }
 }

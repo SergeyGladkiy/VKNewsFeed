@@ -16,7 +16,7 @@ enum FeedViewModelState {
 
 class FeedViewModel {
     
-    var readyNewsFeedItems = Observable<[Int: [ItemTableCellModel]]>(observable: [:])
+    var readyNewsFeedItems = [Int: [ItemTableCellModel]]()
     
     var state: Observable<FeedViewModelState>
     
@@ -39,15 +39,15 @@ class FeedViewModel {
         model.models.bind { [weak self] response in
             guard let self = self else { return }
             self.timer.suspend()
-            self.readyNewsFeedItems.observable = self.mapper.buildNewsFeedItems(items: response.items, profiles: response.profiles, groups: response.groups)
+            self.readyNewsFeedItems = self.mapper.buildNewsFeedItems(items: response.items, profiles: response.profiles, groups: response.groups)
             if self.firstCallfetchNewsFeed == true {
                 self.state.observable = .readyShowItems(0, 49)
-                print("firstIndex \(self.firstIndex) secondIndex \(self.readyNewsFeedItems.observable.count-1)")
-                self.firstIndex = self.readyNewsFeedItems.observable.count
+                print("firstIndex \(self.firstIndex) secondIndex \(self.readyNewsFeedItems.count-1)")
+                self.firstIndex = self.readyNewsFeedItems.count
             } else {
-                self.state.observable = .readyShowItems(self.firstIndex, self.readyNewsFeedItems.observable.count-1)
-                print("firstIndex \(self.firstIndex) secondIndex \(self.readyNewsFeedItems.observable.count-1)")
-                self.firstIndex = self.readyNewsFeedItems.observable.count
+                self.state.observable = .readyShowItems(self.firstIndex, self.readyNewsFeedItems.count-1)
+                print("firstIndex \(self.firstIndex) secondIndex \(self.readyNewsFeedItems.count-1)")
+                self.firstIndex = self.readyNewsFeedItems.count
             }
             
         }
@@ -57,27 +57,33 @@ class FeedViewModel {
 extension FeedViewModel: FeedViewModelProtocol {
     
     func numberOfSection() -> Int {
-        return readyNewsFeedItems.observable.count
+        return readyNewsFeedItems.count
     }
     
     func numberOfRows(section: Int) -> Int {
-        guard let numberOfRows = readyNewsFeedItems.observable[section]?.count else { return 0 }
+        guard let numberOfRows = readyNewsFeedItems[section]?.count else { return 0 }
         return numberOfRows
     }
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> ItemTableCellModel? {
-        return readyNewsFeedItems.observable[indexPath.section]?[indexPath.row]
+        return readyNewsFeedItems[indexPath.section]?[indexPath.row]
         
     }
     
     func fetchNewsFeed() {
         firstCallfetchNewsFeed = true
         model.getNewsFeed()
+        settingTimer()
     }
     
     func getNewData() {
         firstCallfetchNewsFeed = false
-        model.getNewPosts()
+        //model.getNewPosts()
+        model.getNewsFeed()
+        settingTimer()
+    }
+    
+    private func settingTimer() {
         timer.eventHandler = { [weak self] in
             print("thread from dispatch timer\(qos_class_self())")
             self?.timer.suspend()

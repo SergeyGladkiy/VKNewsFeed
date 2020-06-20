@@ -56,6 +56,6 @@ extension AuthViewController {
 
 extension AuthViewController {
     @objc private func buttonEnterAction() {
-        authService.wakeUpSeccion()
+        authService.wakeUpSession()
     }
 }

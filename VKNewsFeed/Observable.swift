@@ -14,6 +14,7 @@ class Observable<T> {
             onChanged?(observable)
         }
     }
+    
     private var onChanged: ((T)-> Void)?
     
     init(observable: T) {

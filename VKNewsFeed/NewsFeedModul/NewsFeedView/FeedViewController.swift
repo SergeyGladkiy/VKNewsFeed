@@ -24,23 +24,18 @@ class FeedViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        layout()
         registerCell()
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        layout()
         registerCell()
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        layout()
         viewModel.state.bind { [weak self] vmState in
             guard let self = self else {
                 return
@@ -48,7 +43,7 @@ class FeedViewController: UIViewController {
             switch vmState {
             case .initial: return
             case .readyShowItems(let firstIndex, let lastIndex):
-                if !self.viewModel.readyNewsFeedItems.observable.isEmpty {
+                if !self.viewModel.readyNewsFeedItems.isEmpty {
                     DispatchQueue.main.async {
                         if firstIndex == 0 {
                             self.tableView.reloadData()
@@ -81,13 +76,7 @@ class FeedViewController: UIViewController {
     }
     
     @objc private func refreshAction(_ refreshControl: UIRefreshControl) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.viewModel?.fetchNewsFeed()
-        }
-        
+        viewModel?.fetchNewsFeed()
     }
 }
 
@@ -96,7 +85,7 @@ extension FeedViewController {
         footerView.cancelLoader()
     }
     
-    func showLoader() {
+    private func showLoader() {
         footerView.showLoader()
     }
     
@@ -129,7 +118,7 @@ extension FeedViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.addSubview(refreshControl)
+        tableView.refreshControl = refreshControl
         
         footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         tableView.tableFooterView = footerView
@@ -169,9 +158,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         }
         if let itemCell = tableView.dequeueReusableCell(withIdentifier: type(of: model).reuseIdentifier, for: indexPath) as? PhotoNewsfeedCell {
             itemCell.viewModel = model as? NewsfeedPhotoCellModel
-            if let itemCellModel = itemCell.viewModel {
-                itemCell.config(size: CGSize(width: itemCellModel.width, height: itemCellModel.height))
-            }
+//            if let itemCellModel = itemCell.viewModel {
+//                itemCell.config(size: CGSize(width: itemCellModel.width, height: itemCellModel.height))
+//            }
             cell = itemCell
         }
         

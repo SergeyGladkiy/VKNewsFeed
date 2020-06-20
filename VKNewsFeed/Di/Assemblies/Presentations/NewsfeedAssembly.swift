@@ -12,10 +12,6 @@ import Swinject
 class NewsfeedAssembly: Assembly {
     func assemble(container: Container) {
         
-        container.register(ProtocolCoordinatorAuth.self) { _ in
-            CoordinatorAuth()
-        }
-        
         container.register(FeedViewModelProtocol.self) { r in
             let model = r.resolve(FeedModelProtocol.self)!
             let mapper = r.resolve(MapperProtocolItemsTableCellModel.self)!

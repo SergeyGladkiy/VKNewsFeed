@@ -8,19 +8,19 @@
 
 import Foundation
 
-class NewsFeedElement {
+struct NewsFeedElement {
     
     let sourceId: Int
     let postId: Int
     let text: String?
     let date: Double
-    let comments: Observable<Int?>
-    let likes: Observable<Int?>
-    let reposts: Observable<Int?>
-    let views: Observable<Int?>
-    let attachments: [AttechmentPersistentItem]?
+    let comments: Int?
+    let likes: Int?
+    let reposts: Int?
+    let views: Int?
+    let attachments: [AttechmentPersistentItem]
     
-    init(sourceId: Int, postId: Int, text: String?, date: Double, comments: Observable<Int?>, likes: Observable<Int?>, reposts: Observable<Int?>, views: Observable<Int?>, attachments: [AttechmentPersistentItem]) {
+    init(sourceId: Int, postId: Int, text: String?, date: Double, comments: Int?, likes: Int?, reposts: Int?, views: Int?, attachments: [AttechmentPersistentItem]) {
         self.sourceId = sourceId
         self.postId = postId
         self.text = text

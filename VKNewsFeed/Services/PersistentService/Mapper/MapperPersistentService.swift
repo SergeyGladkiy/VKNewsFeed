@@ -52,15 +52,17 @@ class MapperPresistentService: PersistentServiceEntitiesMapperProtocol {
             
             //Преобразовать вот тут модель аттачей в NSSet
             let attachments = NSMutableSet()
-            item.attachments.forEach({ (attch) in
+            item.attachments.forEach({ (attach) in
                 guard let entity = NSEntityDescription.entity(forEntityName: "Attachment", in: context) else { return }
                 let attachmentsOfItem = NSManagedObject(entity: entity, insertInto: context) as! Attachment
-                attachmentsOfItem.height = attch.height
-                attachmentsOfItem.width = attch.width
-                attachmentsOfItem.url = attch.url
+                attachmentsOfItem.height = attach.height
+                attachmentsOfItem.width = attach.width
+                attachmentsOfItem.url = attach.url
                 attachmentsOfItem.attachToNews = newsFeedItem
                 attachments.add(attachmentsOfItem)
             })
+            
+            //newsFeedItem.newsToAttach?.mutableCopy()
             newsFeedItem.addToNewsToAttach(attachments)
             return newsFeedItem
         }
@@ -68,7 +70,15 @@ class MapperPresistentService: PersistentServiceEntitiesMapperProtocol {
     }
     
     func items(fromEntities: [NewsFeedItem]) -> [NewsPersistentItem] {
-        return fromEntities.map { NewsPersistentItem(sourceId: Int($0.sourceId),
+        return fromEntities.map {
+            
+            let arrayAttach = $0.newsToAttach?.allObjects as! [Attachment]
+            
+            let persistentAttach = arrayAttach.map {
+                return AttechmentPersistentItem(url: $0.url ?? "", width: $0.width, height: $0.height)
+            }
+            
+            return NewsPersistentItem(sourceId: Int($0.sourceId),
                                                postId: Int($0.postId),
                                                text: $0.text,
                                                date: $0.date,
@@ -76,6 +86,6 @@ class MapperPresistentService: PersistentServiceEntitiesMapperProtocol {
                                                likes: Int($0.likes),
                                                reposts: Int($0.reposts),
                                                views: Int($0.views),
-                                               attachments: [])}
+                                               attachments: persistentAttach)}
     }
 }

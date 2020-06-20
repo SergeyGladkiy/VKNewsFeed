@@ -24,20 +24,11 @@ final class NetworkService {
         })
     }
     
-    private func getUrl(from path: String, params: [String: String]) -> URL {
+    private func getUrl(host: String?, from path: String, params: [String: String]) -> URL {
         var components = URLComponents()
         components.scheme = API.scheme
-        components.host = API.host
+        components.host = host
         components.path = path
-        components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
-        
-        return components.url!
-    }
-    
-    private func getUrlForLongPollServer(from server: String, params: [String: String]) -> URL {
-        var components = URLComponents()
-        components.scheme = API.scheme
-        components.path = server
         components.queryItems = params.map { URLQueryItem(name: $0, value: $1) }
         
         return components.url!
@@ -50,7 +41,8 @@ extension NetworkService: Networking {
         var allparams = params
         allparams["access_token"] = token
         allparams["v"] = API.version
-        let url = self.getUrl(from: path, params: allparams)
+        let host = API.host
+        let url = self.getUrl(host: host, from: path, params: allparams)
         let request = URLRequest(url: url)
         let task = createDataTask(from: request, completion: completion)
         task.resume()
@@ -58,7 +50,7 @@ extension NetworkService: Networking {
     }
     
     func requestLongPollServer(path: String, params: [String : String], completion: @escaping (Data?, Error?) -> Void) {
-        let url = self.getUrlForLongPollServer(from: path, params: params)
+        let url = self.getUrl(host: nil, from: path, params: params)
         let request = URLRequest(url: url)
         let task = createDataTask(from: request, completion: completion)
         task.resume()

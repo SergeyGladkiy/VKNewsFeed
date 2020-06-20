@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NewsFeedData {
+struct NewsFeedData {
     var items: [NewsFeedElement] = []
     var profiles: [Profile] = []
     var groups: [Group] = []

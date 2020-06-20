@@ -12,5 +12,5 @@ protocol AuthServiceProtocol {
     var token: String? { get }
     var delegate: AuthServiceDelegate? { get set }
 
-    func wakeUpSeccion()
+    func wakeUpSession()
 }
