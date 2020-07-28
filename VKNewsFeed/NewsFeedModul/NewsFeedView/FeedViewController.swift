@@ -142,6 +142,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(indexPath.section)
         var cell: UITableViewCell!
         guard let model = viewModel?.cellViewModel(forIndexPath: indexPath) else {
             return UITableViewCell()
@@ -168,11 +169,16 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             itemCell.viewModel = model as? NewsfeedFooterCellModel
             cell = itemCell
         }
+        
+        if indexPath.section == 101 {
+            tableView.tableFooterView = FooterViewOverall()
+        }
         return cell
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y + scrollView.frame.size.height + 30 >= scrollView.contentSize.height {
+        //MARK: scrollView.frame.size.height = высоте девайса!!!
+        if footerView != nil && scrollView.contentOffset.y + scrollView.frame.size.height + 30 >= scrollView.contentSize.height {
             //footerView.showLoader()
             viewModel?.getNewData()
         }

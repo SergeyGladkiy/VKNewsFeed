@@ -9,6 +9,7 @@
 import UIKit
 
 class CollectionViewCellNewsfeed: UICollectionViewCell{
+    
     @IBOutlet weak var photo: UIImageView!
     
     var viewModel: PhotoAttachment? {

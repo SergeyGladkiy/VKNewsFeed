@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,14 +11,14 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="JGy-Q2-uwF" customClass="PhotoNewsfeedCell" customModule="VKNewsFeed" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JGy-Q2-uwF" id="7Zj-CE-Jqs">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JGy-Q2-uwF" id="7Zj-CE-Jqs">
                 <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AD0-zu-8gK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o3G-Zl-7lE">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o3G-Zl-7lE">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -28,14 +26,13 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="AD0-zu-8gK" firstAttribute="leading" secondItem="7Zj-CE-Jqs" secondAttribute="leading" id="Ec4-Se-GYD"/>
-                    <constraint firstAttribute="trailing" secondItem="AD0-zu-8gK" secondAttribute="trailing" id="FEc-JP-Qdt"/>
-                    <constraint firstItem="AD0-zu-8gK" firstAttribute="top" secondItem="7Zj-CE-Jqs" secondAttribute="top" id="XPg-Mb-ulO"/>
-                    <constraint firstAttribute="bottom" secondItem="AD0-zu-8gK" secondAttribute="bottom" id="anc-QX-1GU"/>
-                </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="Ry6-6G-7zQ"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="AD0-zu-8gK" secondAttribute="bottom" id="HRE-e9-I4j"/>
+                <constraint firstItem="AD0-zu-8gK" firstAttribute="leading" secondItem="JGy-Q2-uwF" secondAttribute="leading" id="Ltj-vd-Xtt"/>
+                <constraint firstAttribute="trailing" secondItem="AD0-zu-8gK" secondAttribute="trailing" id="Ony-F8-aYO"/>
+                <constraint firstItem="AD0-zu-8gK" firstAttribute="top" secondItem="JGy-Q2-uwF" secondAttribute="top" id="yEN-F3-FO9"/>
+            </constraints>
             <connections>
                 <outlet property="photoCollectionView" destination="AD0-zu-8gK" id="sYA-As-wzy"/>
             </connections>

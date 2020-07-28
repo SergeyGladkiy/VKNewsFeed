@@ -10,7 +10,7 @@ import UIKit
 
 class PhotoNewsfeedCell: UITableViewCell {
     
-    private var size: CGSize = .zero
+    private var size: CGSize = CGSize(width: 100, height: 100)
     
 //    override var intrinsicContentSize: CGSize {
 //        return size
@@ -56,9 +56,6 @@ class PhotoNewsfeedCell: UITableViewCell {
         let nib = UINib(nibName: CollectionViewCellNewsfeed.reuseIdentifier, bundle: Bundle(for: CollectionViewCellNewsfeed.self))
         photoCollectionView.register(nib, forCellWithReuseIdentifier: CollectionViewCellNewsfeed.reuseIdentifier)
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        photoCollectionView.collectionViewLayout = layout
         photoCollectionView.isPagingEnabled = true
         photoCollectionView.showsHorizontalScrollIndicator = false
     }

@@ -29,15 +29,17 @@ class PersistentService: NSObject {
         //????!!!!!
         //or let privateMOC = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         //privateMOC.parentContext = moc
-        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        
         persistentContainer.loadPersistentStores {[weak self] desc, error in
             guard let error = error else {
                 self?.makeFetchResultContorller()
                 self?.controller.delegate = self
                 return
             }
-            print(error.localizedDescription)
+            print("Persistent Container error: " + error.localizedDescription)
         }
+        
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         
     }
     
